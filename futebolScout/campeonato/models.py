@@ -6,3 +6,4 @@ class Campeonato(models.Model):
     nome = models.CharField(max_length=100)
     nameRights = models.CharField()
     
+    
