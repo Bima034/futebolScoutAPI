@@ -1,0 +1,152 @@
+{% extends 'base.html' %} {% load static %} 
+{% block content %}
+
+
+<div class="row justify-content-center mt-4">
+  <div class="col-xl-3 col-md-6">
+    <div class="card bg-dark text-white mb-4">
+      <div class="card-body">Jogadores</div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-white stretched-link" href="#">View Details</a>
+        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6">
+    <div class="card bg-dark text-white mb-4">
+      <div class="card-body">Times</div>
+      <div
+        class="card-footer d-flex align-items-center justify-content-between"
+      >
+        <a class="small text-white stretched-link" href="#">View Details</a>
+        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6">
+    <div class="card bg-dark text-white mb-4">
+      <div class="card-body">Seleções</div>
+      <div
+        class="card-footer d-flex align-items-center justify-content-between"
+      >
+        <a class="small text-white stretched-link" href="#">View Details</a>
+        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6">
+    <div class="card bg-dark text-white mb-4">
+      <div class="card-body">Campeonatos</div>
+      <div
+        class="card-footer d-flex align-items-center justify-content-between"
+      >
+        <a class="small text-white stretched-link" href="#">View Details</a>
+        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12">
+    <!-- Jogadores Bem Avaliados -->
+    <div class="card mb-4 ">
+      <div class="card-header">
+        <i class="fa-solid fa-trophy me-1"></i>
+        Jogadores Bem Avaliados
+      </div>
+      <div class="card-body row">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
+            <div class="card mt-1" style="width: 20rem;">
+                <img class="card-img-top border border-success border-1" src="{% static 'imgs/CR7.png' %}" alt="Card image cap" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Caça Rato - CR7</h5>
+                    <h6 class="card-subtitle mb-2 text-success">99/10 <i class="fas fa-star"></i></h6>
+                    <p class="card-text">Flávio Augusto do Nascimento, mais conhecido como Flávio Caça-Rato, ou simplesmente Caça-Rato, é um futebolista brasileiro que atua como atacante. Atualmente, joga pelo Atlético Torres.</p>
+                    <a href="#" class="btn btn-success">Detalhar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
+            <div class="card mt-1" style="width: 20rem;">
+                <img class="card-img-top border border-success border-1" src="{% static 'imgs/CR7.png' %}" alt="Card image cap" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Caça Rato - CR7</h5>
+                    <h6 class="card-subtitle mb-2 text-success">99/10 <i class="fas fa-star"></i></h6>
+                    <p class="card-text">Flávio Augusto do Nascimento, mais conhecido como Flávio Caça-Rato, ou simplesmente Caça-Rato, é um futebolista brasileiro que atua como atacante. Atualmente, joga pelo Atlético Torres.</p>
+                    <a href="#" class="btn btn-success">Detalhar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
+            <div class="card mt-1" style="width: 20rem;">
+                <img class="card-img-top border border-success border-1" src="{% static 'imgs/CR7.png' %}" alt="Card image cap" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Caça Rato - CR7</h5>
+                    <h6 class="card-subtitle mb-2 text-success">99/10 <i class="fas fa-star"></i></h6>
+                    <p class="card-text">Flávio Augusto do Nascimento, mais conhecido como Flávio Caça-Rato, ou simplesmente Caça-Rato, é um futebolista brasileiro que atua como atacante. Atualmente, joga pelo Atlético Torres.</p>
+                    <a href="#" class="btn btn-success">Detalhar</a>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-success " href="http://127.0.0.1:8000/jogador/list">Ver Todos Jogadores</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fa-solid fa-trophy me-1"></i>
+        Times Bem Avaliados
+      </div>
+      <div class="card-body">
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-success " href="#">Ver Todos Times</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fa-solid fa-trophy me-1"></i>
+        Seleções Bem Avaliados
+      </div>
+      <div class="card-body">
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-success " href="#">Ver Todas Seleções</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fa-solid fa-trophy me-1"></i>
+        Campeonatos Bem Avaliados
+      </div>
+      <div class="card-body">
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-success " href="#">Ver Todos Campeonatos</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fa-solid fa-trophy me-1"></i>
+        Confederações Bem Avaliados
+      </div>
+      <div class="card-body">
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-success " href="#">Ver Todas Confederações</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
