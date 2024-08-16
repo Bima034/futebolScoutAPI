@@ -7,7 +7,7 @@ from federacao.models import Federacao
 class Campeonato(models.Model):
     nome = models.CharField(max_length=100)
     nameRights = models.CharField()
-    clubes = models.ManyToManyField(Clube, on_delete=models.CASCADE)
+    clubes = models.ManyToManyField(Clube)
     federacao = models.ForeignKey(Federacao, on_delete=models.CASCADE)
     
     
