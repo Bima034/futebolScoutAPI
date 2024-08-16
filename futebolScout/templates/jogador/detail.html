@@ -1,22 +1,37 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="card mb-3">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
+<div class="card mb-3 mt-4">
+  <div class="card-body">
+    <div class="row justify-content-center ">
+        <div class="col-md-8 ">
+          <img
+            class="mb-3 card-img border border-success border-5"
+            src="{% static 'imgs/FLAVIO.jpg' %}"
+            alt="Card image cap"
+          />
+        </div>
+      </div>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <h5 class="card-title ">Flavio Caça Rato</h5>
+            <h5 class="card-title ms-2 text-success"> - 99/10</h5>
+        </div>
+        <a href="#" class="btn btn-success">Avaliar</a>
+      </div>
+    <h6 class="card-subtitle mb-2 text-muted">Jogador de futebol Brasileiro</h6>
+    <p class="card-text">
+        Flávio Augusto do Nascimento, mais conhecido como Flávio Caça-Rato, ou simplesmente Caça-Rato, (Recife, 29 de junho de 1986), é um futebolista brasileiro que atua como atacante. Atualmente, joga pelo Atlético Torres.
+    </p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"></li>
+      <li class="list-group-item">Nascimento: 29 de junho de 1986 (idade 38 anos)</li>
+      <li class="list-group-item">Clube atual: Atlético Torres</li>
+      <li class="list-group-item">Nacionalidade: Brasileiro</li>
+      <li class="list-group-item">Altura: 1,76m</li>
+      <li class="list-group-item">Pé: ambidestro</li>  
+    </ul>
+
   </div>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-    <img class="card-img-bottom" src="..." alt="Card image cap">
-  </div>
+</div>
 
 {% endblock content %}
