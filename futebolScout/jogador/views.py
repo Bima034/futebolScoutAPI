@@ -8,3 +8,7 @@ def listJogador(request):
 
     return render(request, "jogador/list.html", {})
 
+def detailJogador(request):
+
+    return render(request, "jogador/detail.html", {})
+
