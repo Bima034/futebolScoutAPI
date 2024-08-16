@@ -3,7 +3,10 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Usuario(User):
+class Pessoa(User):
     nome = models.CharField(max_length=100)
-    idade = models.ImageField()
+    dataNascimento = models.DateField()
     
+
+class Usuario(Pessoa):
+    apelido = models.CharField(max_length=100)
