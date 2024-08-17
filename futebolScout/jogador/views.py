@@ -6,9 +6,13 @@ def dashboard(request):
 
 def listJogador(request):
 
-    return render(request, "jogador/list.html", {})
+    return render(request, "jogador/listJogador.html", {})
 
 def detailJogador(request):
 
-    return render(request, "jogador/detail.html", {})
+    return render(request, "jogador/detailJogador.html", {})
+
+def addJogador(request):
+
+    return render(request, "jogador/addJogador.html", {})
 
