@@ -20,8 +20,8 @@
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="http://127.0.0.1:8000">FutebolScout</a>
             <!-- Navbar Search-->
-            <form class="form-inline me-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
+            <form class="form-inline me-auto me-0 me-md-3 my-2 my-md-0 flex-fill">
+                <div class="input-group flex-fill">
                     <button class="btn btn-success" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                     <input class="form-control" type="text" placeholder="Procurar por..." aria-label="Procurar por..." aria-describedby="btnNavbarSearch" />
                 </div>
@@ -115,7 +115,7 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main style="background-color: #343a40;">
+                <main class="h-100" style="background-color: #343a40;">
                     <div class="container-fluid px-4" style="background-color: #343a40;">
                         {% block content %}
                         {% endblock content %}
