@@ -6,8 +6,6 @@ from django.contrib.auth.models import User
 class Pessoa(User):
     nome = models.CharField(max_length=100)
     dataNascimento = models.DateField()
-    idade = models.IntegerField()
+    apelido = models.CharField(max_length=100, blank=True)
     
-
-class Usuario(Pessoa):
-    apelido = models.CharField(max_length=100)
+    

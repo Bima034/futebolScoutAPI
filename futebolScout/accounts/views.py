@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect
 from .forms import UsuarioForm
 
 # Create your views here.
@@ -10,6 +10,7 @@ def createUser(request):
         
         if form.is_valid():
             form.save()
+            return redirect('login')
         
     else:
         form = UsuarioForm()
