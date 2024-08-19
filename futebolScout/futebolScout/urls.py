@@ -20,7 +20,7 @@ from jogador.views import dashboard
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', dashboard),
+    path('', include('jogador.urls')),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('jogador/', include('jogador.urls')),
