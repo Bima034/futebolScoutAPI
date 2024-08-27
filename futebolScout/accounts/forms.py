@@ -4,6 +4,7 @@ from .models import Pessoa
 
 
 class UsuarioForm(UserCreationForm):
+    dataNascimento = forms.DateField(label='Data de Nascimento', widget=forms.DateInput(attrs={'type': 'date'}))
     class Meta():
         model = Pessoa
         fields = ['nome', 'username', 'dataNascimento']
@@ -17,3 +18,4 @@ class UsuarioForm(UserCreationForm):
         
         self.fields['nome'].label = 'Nome Completo'
         self.fields['dataNascimento'].label = 'Data de Nascimento'
+        
