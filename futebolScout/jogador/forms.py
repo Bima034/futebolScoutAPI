@@ -31,7 +31,7 @@ class JogadorCreaterForm(forms.Form):
     altura = forms.FloatField(label='Altura',widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: 1,80'}), max_value=2.5, min_value=1.0)
     foto = forms.ImageField(label='Foto', widget=forms.FileInput(attrs={'class': 'form-control mb-3'}))
     
-    class Meta():
+    class Meta:
         model = Jogador
         fields = ['nome', 'dataNascimento', 'posicao', 'altura', 'nacionalidade', 'clube']    
     
