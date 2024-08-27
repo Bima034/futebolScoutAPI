@@ -1,5 +1,5 @@
 from django.db import models
-# Create your models here.
+
 class Jogador(models.Model):
     POSICAO_CHOICES = [
         ('Goleiro', 'Goleiro'),
@@ -27,4 +27,5 @@ class Jogador(models.Model):
     melhor_pe = models.CharField(choices=MELHOR_PE_CHOICES, max_length=100)
     foto_path = models.CharField(max_length=250)
     fotoCapa_path = models.CharField(max_length=250)
+    nota_media = models.FloatField(default=0.0, editable=False)
     
