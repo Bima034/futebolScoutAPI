@@ -28,4 +28,6 @@ class Jogador(models.Model):
     foto_path = models.CharField(max_length=250)
     fotoCapa_path = models.CharField(max_length=250)
     nota_media = models.FloatField(default=0.0, editable=False)
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    data_atualizacao = models.DateTimeField(auto_now=True)
     
