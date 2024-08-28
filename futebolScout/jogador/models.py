@@ -1,19 +1,6 @@
 from django.db import models
 
 class Jogador(models.Model):
-    POSICAO_CHOICES = [
-        ('Goleiro', 'Goleiro'),
-        ('Zagueiro', 'Zagueiro'),
-        ('Lateral Esquerdo', 'Lateral Esquerdo'),
-        ('Lateral Direito', 'Lateral Direito'),
-        ('Volante', 'Volante'),
-        ('Meio Campo', 'Meio Campo'),
-        ('Meia atacante', 'Meia atacante'),
-        ('Ponta esquerda', 'Ponta esquerda'),
-        ('Ponta direita', 'Ponta direita'),
-        ('Centroavante', 'Centroavante'),
-        ('Atacante', 'Atacante'),
-    ]
     MELHOR_PE_CHOICES = [
         ('Esquerdo', 'Esquerdo'),
         ('Direito', 'Direito'),
