@@ -5,8 +5,7 @@ from .models import Federacao
 
 
 def listFederacao(request):
-    federacoes = Federacao.objects.all()
-    return render(request, "federacao/listFederacao.html", {'federacoes': federacoes})
+    return render(request, "federacao/listFederacao.html", {'federacoes': Federacao.objects.all()})
 
 def detailFederacao(request, id_federacao):
     if request.method == 'GET':

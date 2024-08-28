@@ -50,23 +50,23 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="http://127.0.0.1:8000/jogador/list">
+                            <a class="nav-link" href='{% url "list-jogador" %}'>
                                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                 Jogadores
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{% url 'list-clube' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Clubes
                             </a>
-                            <a class="nav-link" href="#">
+                            {% comment %} <a class="nav-link" href='list-campeonato'>
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Seleções
-                            </a>
-                            <a class="nav-link" href="#">
+                            </a> 
+                            <a class="nav-link" href='{% url "list-campeonato" %}'>
                                 <div class="sb-nav-link-icon"><i class="fas fa-futbol"></i></div>
-                                Campeonatos
-                            </a>
-                            <a class="nav-link" href="#">
+                                Campeonatos #TODO Descomentar o que for fazendo
+                            </a> {% endcomment %}
+                            <a class="nav-link" href='{% url "list-federacao" %}'>
                                 <div class="sb-nav-link-icon"><i class="fas fa-globe"></i></div>
                                 Federações
                             </a>
@@ -129,11 +129,14 @@
                 <footer class="py-4 bg-light mt-auto bg-dark text-white">
                     <div class="container-fluid px-4 ">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div class="row-6">
+                                <div class="text-muted">Todos os direitos reservados</div>
+                                <div class="text-muted">Copyright &copy; FutebolScout 2024</div>
+                            </div>
                             <div>
-                                <a href="#">Privacy Policy</a>
+                                <a href="#">Políticas de Privacidade</a>
                                 &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                                <a href="#">Termos &amp; Condições</a>
                             </div>
                         </div>
                     </div>
