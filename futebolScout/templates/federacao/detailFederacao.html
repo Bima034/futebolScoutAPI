@@ -1,42 +1,20 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static %} 
+{% block content %}
 
 <div class="card mb-3 mt-4 bg-dark text-white p-3">
-  <div class="card-body">
-    <div class="row justify-content-center ">
-        <div class="col-md-12 position-relative">
-          <img
-            class="mb-3 card-img border border-success border-5"
-            src="{% static 'imgs/HALAND_DETAIL.png' %}"
-            alt="Card image cap"
-          />
-        </div>
-      </div>
-      
-    <div class="d-flex justify-content-between align-items-center">
-      <h5 class="card-title text-success"> Nota: 8,5/10 <i class="fas fa-star"></i></h5>
-        <a href="#" class="btn btn-success">Avaliar</a>
-      </div>
-      <h5 class="card-title ">Erling Haaland</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Jogador de futebol Norueguês</h6>
-    <p class="card-text">
-        Erling Braut Haaland nascido em 21 de julho de 2000 é um futebolista norueguês nascido no Reino Unido que atua como centroavante. Atualmente joga pelo Manchester City e pela Seleção Norueguesa. Considerado um dos melhores atacantes do futebol mundial,[5] no ano de 2020 ganhou o prêmio Golden Boy, dado ao melhor jogador com idade abaixo de 21 anos atuando na Europa.
-    </p>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item bg-dark"></li>
-      <li class="list-group-item bg-dark text-white">Nascimento: 21 de julho de 2000 (24 anos)</li>
-      <li class="list-group-item bg-dark text-white">Clube atual: Manchester City</li>
-      <li class="list-group-item bg-dark text-white">Nacionalidade: Norueguês</li>
-      <li class="list-group-item bg-dark text-white">Altura: 1,95m</li>
-      <li class="list-group-item bg-dark text-white mb-4">Pé: canhoto</li>  
-    </ul>
-    <div class="card-footer d-flex align-items-center justify-content-between">
-      <div class="form-group w-100">
-        <label for="exampleFormControlTextarea1">Adicionar Comentario</label>
-        <textarea class="form-control w-100" id="exampleFormControlTextarea1" rows="3" ></textarea>
-        <a href="#" class="btn btn-success mt-1">Comentar</a>
+  <div class="row g-0">
+    <!-- <div class="col-md-4">
+      <img src="{% static federacao.path_foto %}" class="img-fluid rounded-start" alt="...">
+    </div> -->
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ federacao.nome }}</h5>
+        <p class="card-text">{{ federacao.presidente }}</p>
+        <p class="card-text"><small class="text-muted">{{ federacao.localidade }}</small></p>
+        <p class="card-text"><small class="text-muted">{{ federacao.afiliada.all }}</small></p>
       </div>
     </div>
-  </div>
-</div>
 
-{% endblock content %}
+  </div>
+
+  {% endblock content %}

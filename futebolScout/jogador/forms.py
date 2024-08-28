@@ -3,8 +3,12 @@ from .models import Jogador
 from clube.models import Clube
 import requests
 
+class JogadorForm(forms.ModelForm):
+    class Meta:
+        model = Jogador
+        fields = ['nome_jogador', 'nacionalidade', 'descricao', 'altura', 'melhor_pe', 'foto_path', 'fotoCapa_path']
 
-class JogadorCreaterForm(forms.Form):
+    
     response = requests.get('https://restcountries.com/v3.1/all')
     lista = []
     if response.status_code == 200:
@@ -15,6 +19,8 @@ class JogadorCreaterForm(forms.Form):
     lista_paises.sort()
     for pais in lista_paises:
         lista.append((pais, pais))
+    
+    '''
     nome = forms.CharField(label='Nome', widget=forms.TextInput(attrs={'class': 'form-control'}))
     clube = forms.ModelChoiceField(
         queryset=Clube.objects.all(),
@@ -25,13 +31,14 @@ class JogadorCreaterForm(forms.Form):
         
     )
     posicao = forms.ChoiceField(label='Posição', choices=Jogador.POSICAO_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
-    nacionalidade = forms.ChoiceField(label='Nacionalidade', choices=lista, widget=forms.Select(attrs={'class': 'form-control'}))
     melhor_pe = forms.ChoiceField(label='Melhor Pé', choices=Jogador.MELHOR_PE_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
     dataNascimento = forms.DateField(label='Data de Nascimento', widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
-    altura = forms.FloatField(label='Altura',widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: 1,80'}), max_value=2.5, min_value=1.0)
-    foto = forms.ImageField(label='Foto', widget=forms.FileInput(attrs={'class': 'form-control mb-3'}))
+    foto_path = forms.ImageField(label='Foto', widget=forms.FileInput(attrs={'class': 'form-control mb-3'}))
+    fotoCapa_path = forms.ImageField(label='Foto Capa', widget=forms.FileInput(attrs={'class': 'form-control mb-3'}))
+    '''
     
-    class Meta():
-        model = Jogador
-        fields = ['nome', 'dataNascimento', 'posicao', 'altura', 'nacionalidade', 'clube']    
+    altura = forms.FloatField(label='Altura',widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ex.: 1,80'}), max_value=2.5, min_value=1.0)
+    nacionalidade = forms.ChoiceField(label='Nacionalidade', choices=lista, widget=forms.Select(attrs={'class': 'form-control'}))
+    
+   
     

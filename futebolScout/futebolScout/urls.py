@@ -24,7 +24,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('jogador/', include('jogador.urls')),
-    #path('clube/', include('clube.urls')),
+    path('clube/', include('clube.urls')),
     path('federacao/', include('federacao.urls')),
     path('campeonato/', include('campeonato.urls')),
 ]

@@ -10,7 +10,8 @@ class Campeonato(models.Model):
     nameRights = models.CharField(max_length=100)
     clubes = models.ManyToManyField(Clube)
     federacao = models.ForeignKey(Federacao, on_delete=models.CASCADE)
-
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    data_atualizacao = models.DateTimeField(auto_now=True)
 
 
     
