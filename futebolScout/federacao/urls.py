@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views, apis
 urlpatterns = [
-    path('list/', views.listFederacao, name='list-federacao'),
+    path('', views.listFederacao, name='list-federacao'),
     path('detail/<int:id_federacao>', views.detailFederacao, name='detail-federacao'),
     path("add/", views.add, name="add-federacao"),
     path("delete/<int:id_federacao>", views.delete, name="delete-federacao"),

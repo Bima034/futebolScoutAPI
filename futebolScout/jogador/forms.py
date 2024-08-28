@@ -6,7 +6,7 @@ import requests
 class JogadorForm(forms.ModelForm):
     class Meta:
         model = Jogador
-        fields = ['nome_jogador', 'nacionalidade', 'descricao', 'altura', 'melhor_pe', 'foto_path', 'fotoCapa_path']
+        fields = ['nome_jogador', 'nacionalidade', 'descricao', 'altura', 'melhor_pe', 'foto_path', 'fotoCapa_path', 'clube', 'posicao']
 
     
     response = requests.get('https://restcountries.com/v3.1/all')
