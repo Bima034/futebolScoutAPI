@@ -27,8 +27,8 @@ class Jogador(models.Model):
     descricao = models.TextField() 
     altura = models.FloatField()
     melhor_pe = models.CharField(choices=MELHOR_PE_CHOICES, max_length=100)
-    foto_path = models.CharField(max_length=250)
-    fotoCapa_path = models.CharField(max_length=250)
+    foto_path = models.ImageField(upload_to='imagens/jogador/', null=True, blank=True)
+    fotoCapa_path = models.ImageField(upload_to='imagens/jogador/', null=True, blank=True)
     nota_media = models.FloatField(default=0.0, editable=False)
     clube = models.ForeignKey('clube.Clube', on_delete=models.SET_NULL, default=None, null=True, blank=True)
     posicao = models.CharField(choices=POSICAO_CHOICES, max_length=100)
@@ -36,14 +36,14 @@ class Jogador(models.Model):
     comentarios = models.ManyToManyField(
         Pessoa, 
         blank=True, 
-        through='Comentarios', 
+        through='ComentariosJogador', 
         related_name='jogador_comentarios'
     )
         
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_atualizacao = models.DateTimeField(auto_now=True)
     
-class Comentarios(models.Model):
+class ComentariosJogador(models.Model):
     jogador = models.ForeignKey(
         Jogador, 
         on_delete=models.CASCADE, 
@@ -52,7 +52,7 @@ class Comentarios(models.Model):
     pessoa = models.ForeignKey(
         Pessoa, 
         on_delete=models.CASCADE, 
-        related_name='comentarios_pessoa'
+        related_name='comentarios_pessoa_jogador'
     )
     comentario = models.TextField()
 
