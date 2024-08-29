@@ -23,8 +23,13 @@
     {%for jogador in jogadores%}
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
         <div class="card mt-4 bg-dark text-white" style="width: 20rem;">
-            <img class="card-img-top " src="{{jogador.foto_path}}" alt="Card image cap"
-                style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% if jogador.foto_path is not None %}
+                <img class="card-img-top " src="{{jogador.foto_path}}" alt="Card image cap"
+                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% else %}
+                <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
+                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{jogador.nome_jogador}}</h5>
                 <h6 class="card-subtitle mb-2 text-success">{{jogador.nota_media}}<i class="fas fa-star"></i></h6>

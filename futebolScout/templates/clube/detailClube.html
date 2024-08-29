@@ -1,20 +1,104 @@
 {% extends 'base.html' %} {% load static %} 
 {% block content %}
 
+
 <div class="card mb-3 mt-4 bg-dark text-white p-3">
-  <div class="row g-0">
-    <!-- <div class="col-md-4">
-      <img src="{% static clube.path_foto %}" class="img-fluid rounded-start" alt="...">
-    </div> -->
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ clube.nome }}</h5>
-        <p class="card-text">{{ clube.presidente }}</p>
-        <p class="card-text"><small class="text-muted">{{ clube.localidade }}</small></p>
-        <p class="card-text"><small class="text-muted">{{ clube.afiliada.all }}</small></p>
+  <div class="card-body">
+    <div class="row justify-content-center ">
+        <div class="col-md-12 position-relative">
+
+          {% if clube.logo_path is not None %}
+              <img class="mb-3 card-img border border-success border-5" src="{{clube.logo_path}}" alt="Card image cap" />
+          {% else %}
+              <img class="mb-3 card-img border border-success border-5" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"/>
+          {% endif %}
+        </div>
+      </div>
+      
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="card-title text-success"> Nota: {{clube.nota_media}} <i class="fas fa-star"></i></h5>
+        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#avaliacaoModal">Avaliar</a>
+      </div>
+      <h5 class="card-title ">{{clube.nome}} - {{clube.sigla}}</h5>
+    <p class="card-text">
+      {{clube.descricao}}
+    </p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item bg-dark"></li>
+      <li class="list-group-item bg-dark text-white">Pais: {{clube.pais}} </li>
+      <li class="list-group-item bg-dark text-white">Presidente: {{clube.presidente}} </li>
+      <li class="list-group-item bg-dark text-white">Treinador: {{clube.treinador}} </li>
+      <li class="list-group-item bg-dark text-white">Estádio: {{clube.estadio}} </li>
+      <li class="list-group-item bg-dark text-white">Fundação: {{clube.fundacao}} </li>
+      <li class="list-group-item bg-dark text-white">Federações: 
+        {% for federacao in clube.federacoes.all %}
+        {{ federacao.nome }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      </li> 
+    </ul>
+    <div class="card-footer d-flex align-items-center justify-content-between">
+      <div class="form-group w-100">
+        <label for="exampleFormControlTextarea1">Adicionar Comentario</label>
+        <textarea class="form-control w-100" id="exampleFormControlTextarea1" rows="3" ></textarea>
+        <a href="#" class="btn btn-success mt-1">Comentar</a>
       </div>
     </div>
-
   </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade " id="avaliacaoModal" tabindex="-1" aria-labelledby="avaliacaoModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title   text-success" id="avaliacaoModalLabel">Avaliando {{clube.nome}}</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Conteúdo do modal -->
+        <form method="POST" action="./">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="customRange2" class="form-label fs-5">Avaliar: <span id="rangeValue">4</span> <i class="fas fa-star"></i></label>
+            <input name="nota" type="range" class="form-range text-success" min="1" max="10" step="1" id="customRange2">
+          </div>
+          <button type="submit" class="btn btn-success ">Avaliar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    // Seleciona o input de faixa e o elemento span onde o valor será exibido
+    var rangeInput = document.getElementById('customRange2');
+    var rangeValue = document.getElementById('rangeValue');
+
+    // Define o valor inicial do span para o valor inicial do input
+    rangeValue.textContent = rangeInput.value;
+
+    // Atualiza o span sempre que o valor do input muda
+    rangeInput.addEventListener('input', function() {
+        rangeValue.textContent = this.value;
+    });
+</script>
+
+<style>
+  #customRange2::-webkit-slider-thumb {
+    background-color: #28a745; /* Cor verde do Bootstrap (success) */
+    border: none;
+}
+
+#customRange2::-moz-range-thumb {
+    background-color: #28a745;
+    border: none;
+}
+
+#customRange2::-ms-thumb {
+    background-color: #28a745;
+    border: none;
+}
+</style>
 
   {% endblock content %}
