@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('clube', '__first__'),
         ('federacao', '__first__'),
-    ]
+   ]
 
     operations = [
         migrations.CreateModel(
