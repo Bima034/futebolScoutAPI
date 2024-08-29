@@ -12,6 +12,8 @@ class Campeonato(models.Model):
     federacao = models.ForeignKey(Federacao, on_delete=models.CASCADE)
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_atualizacao = models.DateTimeField(auto_now=True)
+    logo_path = models.ImageField(upload_to='imagens/campeonato/', null=True, blank=True)
+    descricao = models.TextField(null=True, blank=True)
 
 
     
