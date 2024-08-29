@@ -31,28 +31,12 @@
             <div class="card-body">
                 <h5 class="card-title">{{federacao.nome}}</h5>
                 {% comment %} <h6 class="card-subtitle mb-2 text-success">---<i class="fas fa-star"></i></h6> {% endcomment %}
-                <a href="/detail/{{ federacao.id }}/" class="btn btn-success">Detalhar</a>
-                <a href="/edit/{{ federacao.id }}/" class="btn btn-success">Editar</a>
-                <a href="/delete/{{ federacao.id }}/" class="btn btn-danger">Excluir</a>
+                <a href="/federacao/detail/{{ federacao.id }}" class="btn btn-success">Detalhar</a>
+                <a href="/federacao/edit/{{ federacao.id }}" class="btn btn-success">Editar</a>
+                <a href="/federacao/delete/{{ federacao.id }}" class="btn btn-danger">Excluir</a>
             </div>
         </div>
     </div>  
     {% endfor %}         
-
-    <!--  
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
-        <div class="card mt-4 bg-dark text-white" style="width: 20rem;">
-            <img class="card-img-top " src="{% static 'imgs/HAALAND.png' %}" alt="Card image cap"
-                style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
-            <div class="card-body">
-                <h5 class="card-title">Erling Haaland</h5>
-                <h6 class="card-subtitle mb-2 text-success">8,5/10 <i class="fas fa-star"></i></h6>
-                <p class="card-text">Erling Braut Haaland é um futebolista norueguês nascido no Reino Unido que atua
-                    como centroavante. Atualmente joga pelo Manchester City e pela Seleção Norueguesa.</p>
-                <a href="#" class="btn btn-success">Detalhar</a>
-            </div>
-        </div>
-    </div>
-    -->
 </div>
 {% endblock content %}
