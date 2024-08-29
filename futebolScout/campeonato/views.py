@@ -30,7 +30,7 @@ def detail(request, id):
             return render(request, 'campeonato/detailCampeonato.html', {'error': error})
         return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato})
     else:
-        return HttpResponseRedirect('/campeonato/list/', {'error': 'Campeonato não encontrado'})
+        return HttpResponseRedirect('/campeonato/', {'error': 'Campeonato não encontrado'})
     
 
 def edit(request, id):
@@ -42,14 +42,14 @@ def edit(request, id):
             return HttpResponseRedirect(f'/campeonato/detail/{campeonato.id}')
         return render(request, 'campeonato/editCampeonato.html', {'form': form})
     else:
-        return HttpResponseRedirect('/campeonato/list/', {'error': 'Campeonato não encontrado'})
+        return HttpResponseRedirect('/campeonato/', {'error': 'Campeonato não encontrado'})
 
 def delete(request, id):
     if request.method == 'POST':
         try:
             Campeonato.objects.get(id=id).delete()
-            return HttpResponseRedirect('/campeonato/list/')
+            return HttpResponseRedirect('/campeonato/')
         except Campeonato.DoesNotExist:
-            return HttpResponseRedirect('/campeonato/list/', {'error': 'Campeonato não encontrado'})
+            return HttpResponseRedirect('/campeonato/', {'error': 'Campeonato não encontrado'})
         
     return HttpResponseRedirect(f'/campeonato/detail/{id}')
