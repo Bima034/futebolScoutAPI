@@ -27,4 +27,5 @@ urlpatterns = [
     path('clube/', include('clube.urls')),
     path('federacao/', include('federacao.urls')),
     path('campeonato/', include('campeonato.urls')),
+    #path('avaliacao/', include('avaliacao.urls')),
 ]
