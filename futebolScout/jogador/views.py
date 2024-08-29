@@ -87,7 +87,11 @@ def editJogador(request, jogador_id):
     return render(request, 'jogador/editJogador.html', {'form': form})
 
 def deleteJogador(request, jogador_id):
+    if request.method == 'POST':
+        try:
+            Jogador.objects.get(pk=jogador_id).delete()
+            return HttpResponseRedirect('/jogador/')
+        except Jogador.DoesNotExist:
+            return HttpResponseRedirect('/jogador/', {'error': 'Jogador não encontrado'})
 
-    Jogador.objects.get(pk=jogador_id).delete()
-    return HttpResponseRedirect('/jogador/')
-
+    return HttpResponseRedirect(f'/jogador/detail/{jogador_id}')

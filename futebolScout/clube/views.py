@@ -44,9 +44,12 @@ def edit(request, id):
         return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
         
 def delete(request, id):
-    try:
-        clube = Clube.objects.get(id=id)
-        clube.delete()
-        return HttpResponseRedirect('/clube/')
-    except Clube.DoesNotExist:
-        return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
+    if request.method == 'POST':
+        try:
+            clube = Clube.objects.get(id=id)
+            clube.delete()
+            return HttpResponseRedirect('/clube/')
+        except Clube.DoesNotExist:
+            return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
+    else: 
+        return HttpResponseRedirect(f'/clube/detail/{id}')
