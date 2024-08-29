@@ -45,8 +45,11 @@ def edit(request, id):
         return HttpResponseRedirect('/campeonato/list/', {'error': 'Campeonato não encontrado'})
 
 def delete(request, id):
-    if id:
-        Campeonato.objects.get(id=id).delete()
-        return HttpResponseRedirect('/campeonato/list/')
-    else:
-        return HttpResponseRedirect('/campeonato/list/', {'error': 'Campeonato não encontrado'})
+    if request.method == 'POST':
+        try:
+            Campeonato.objects.get(id=id).delete()
+            return HttpResponseRedirect('/campeonato/list/')
+        except Campeonato.DoesNotExist:
+            return HttpResponseRedirect('/campeonato/list/', {'error': 'Campeonato não encontrado'})
+        
+    return HttpResponseRedirect(f'/campeonato/detail/{id}')

@@ -28,10 +28,14 @@ def add(request):
 
 def delete(request, id_federacao):
     if request.method == 'POST':
-        federacao = Federacao.objects.get(id=id_federacao)
-        federacao.delete()
-        return HttpResponseRedirect('/federacao/list/')
-    return HttpResponse('Método não permitido', status=405)
+        try:
+            federacao = Federacao.objects.get(id=id_federacao)
+            federacao.delete()
+            return HttpResponseRedirect('/federacao/')
+        except Federacao.DoesNotExist:
+            return HttpResponseRedirect('/federacao/', {'error': 'Federação não encontrada'})
+
+    return HttpResponseRedirect(f'/federacao/detail/{id_federacao}')
 
 def edit(request, id_federacao):
     if request.method == 'GET':

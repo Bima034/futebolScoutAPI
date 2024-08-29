@@ -33,7 +33,10 @@
                 {% comment %} <h6 class="card-subtitle mb-2 text-success">---<i class="fas fa-star"></i></h6> {% endcomment %}
                 <a href="/federacao/detail/{{ federacao.id }}" class="btn btn-success">Detalhar</a>
                 <a href="/federacao/edit/{{ federacao.id }}" class="btn btn-success">Editar</a>
-                <a href="/federacao/delete/{{ federacao.id }}" class="btn btn-danger">Excluir</a>
+                <form method='POST' action="/federacao/delete/{{ federacao.id }}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
             </div>
         </div>
     </div>  
