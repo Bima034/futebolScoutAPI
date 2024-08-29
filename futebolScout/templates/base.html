@@ -58,18 +58,18 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Clubes
                             </a>
-                            {% comment %} <a class="nav-link" href='list-campeonato'>
-                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                                Seleções
-                            </a> 
-                            <a class="nav-link" href='{% url "list-campeonato" %}'>
-                                <div class="sb-nav-link-icon"><i class="fas fa-futbol"></i></div>
-                                Campeonatos #TODO Descomentar o que for fazendo
-                            </a> {% endcomment %}
                             <a class="nav-link" href='{% url "list-federacao" %}'>
                                 <div class="sb-nav-link-icon"><i class="fas fa-globe"></i></div>
                                 Federações
                             </a>
+                            <a class="nav-link" href='{% url "list-campeonato" %}'>
+                                <div class="sb-nav-link-icon"><i class="fas fa-futbol"></i></div>
+                                Campeonatos
+                            </a> 
+                            {% comment %} <a class="nav-link" href='list-selecoes'>
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Seleções
+                            </a> {% endcomment %}
                             <!--
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">

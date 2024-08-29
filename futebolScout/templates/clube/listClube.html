@@ -29,7 +29,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{clube.nome}}</h5>
                 <h6 class="card-subtitle mb-2 text-success">{{clube.nota_media}}<i class="fas fa-star"></i></h6>
-                <p class="card-text">{{clube.descricao}}</p>
+                <p class="card-text">{{ clube.descricao|slice:":180" }}{% if clube.descricao|length > 180 %}...{% endif %}</p>
                 <a href="/clube/detail/{{ clube.id }}" class="btn btn-success">Detalhar</a>
                 <a href="/clube/edit/{{ clube.id }}" class="btn btn-success">Editar</a>
                 <a href="/clube/delete/{{ clube.id }}" class="btn btn-danger">Excluir</a>
