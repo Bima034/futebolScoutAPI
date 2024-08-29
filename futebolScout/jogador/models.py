@@ -20,6 +20,7 @@ class Jogador(models.Model):
         ('Direito', 'Direito'),
         ('Ambidestro', 'Ambidestro'),
     ]
+
     escolhas_avaliacao = [(i, str(i)) for i in range(11)] 
     nome_jogador = models.CharField(max_length=100)
     nacionalidade = models.CharField(max_length=100)
@@ -31,6 +32,7 @@ class Jogador(models.Model):
     nota_media = models.FloatField(default=0.0, editable=False)
     clube = models.ForeignKey('clube.Clube', on_delete=models.SET_NULL, default=None, null=True, blank=True)
     posicao = models.CharField(choices=POSICAO_CHOICES, max_length=100)
+    
     comentarios = models.ManyToManyField(
         Pessoa, 
         blank=True, 
