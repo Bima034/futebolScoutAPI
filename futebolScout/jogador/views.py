@@ -61,7 +61,7 @@ def addJogador(request):
             jogador =  form.save(commit=False)
             form.save(commit=True)
             
-            return HttpResponseRedirect(f'/jogador/list/')
+            return HttpResponseRedirect(f'/jogador/')
         else:
             print('nao eh válido')
             return render(request, "jogador/addJogador.html", {'form': form})
@@ -89,5 +89,5 @@ def editJogador(request, jogador_id):
 def deleteJogador(request, jogador_id):
 
     Jogador.objects.get(pk=jogador_id).delete()
-    return HttpResponseRedirect('/jogador/list/')
+    return HttpResponseRedirect('/jogador/')
 
