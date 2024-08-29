@@ -30,7 +30,7 @@ def detail(request, id):
             return render(request, 'clube/detailClube.html', {'error': error})
         return render(request, 'clube/detailClube.html', {'clube': clube})
     else:
-        return HttpResponseRedirect('/clube/list/', {'error': 'Clube não encontrado'})
+        return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
         
 def edit(request, id):
     if id:
@@ -41,11 +41,12 @@ def edit(request, id):
             return HttpResponseRedirect(f'/clube/detail/{clube.id}')
         return render(request, 'clube/editClube.html', {'form': form})
     else:
-        return HttpResponseRedirect('/clube/list/', {'error': 'Clube não encontrado'})
+        return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
         
 def delete(request, id):
-    if id:
-        Clube.objects.get(id=id).delete()
-        return HttpResponseRedirect('/clube/list/')
-    else:
-        return HttpResponseRedirect('/clube/list/', {'error': 'Clube não encontrado'})
+    try:
+        clube = Clube.objects.get(id=id)
+        clube.delete()
+        return HttpResponseRedirect('/clube/')
+    except Clube.DoesNotExist:
+        return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
