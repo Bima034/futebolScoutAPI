@@ -36,14 +36,14 @@ class Jogador(models.Model):
     comentarios = models.ManyToManyField(
         Pessoa, 
         blank=True, 
-        through='Comentarios', 
+        through='ComentariosJogador', 
         related_name='jogador_comentarios'
     )
         
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_atualizacao = models.DateTimeField(auto_now=True)
     
-class Comentarios(models.Model):
+class ComentariosJogador(models.Model):
     jogador = models.ForeignKey(
         Jogador, 
         on_delete=models.CASCADE, 
@@ -52,7 +52,7 @@ class Comentarios(models.Model):
     pessoa = models.ForeignKey(
         Pessoa, 
         on_delete=models.CASCADE, 
-        related_name='comentarios_pessoa'
+        related_name='comentarios_pessoa_jogador'
     )
     comentario = models.TextField()
 
