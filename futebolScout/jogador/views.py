@@ -19,6 +19,7 @@ def listJogador(request):
 @login_required
 def detailJogador(request, jogador_id):
 
+    #AVALIANDO
     if request.method == 'POST':
         jogador = Jogador.objects.get(pk=jogador_id)
         valor = float(request.POST.get('nota', 0))

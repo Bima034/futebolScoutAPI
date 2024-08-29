@@ -6,8 +6,8 @@ class AvaliacaoJogador(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     jogador = models.ForeignKey(Jogador, on_delete=models.CASCADE)
     nota = models.FloatField()
-    data_criacao = models.DateTimeField(auto_now_add=True)
-    data_atualizacao = models.DateTimeField(auto_now=True)
+    #data_criacao = models.DateTimeField(auto_now_add=True)
+    #data_atualizacao = models.DateTimeField(auto_now=True)
 
     
     def save(self, *args, **kwargs):
