@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
 
@@ -12,7 +12,7 @@
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center"> 
         <div class="card mt-4 bg-dark text-white border-success" style="width: 20rem; border: 4px solid #198754;">
             <div class="card-body d-flex justify-content-center align-items-center" style="height: 15rem;">
-                <a href="{% url 'add-jogador' %}">
+                <a href="{% url 'add-clube' %}">
                     <i class="fa fa-plus-square text-success fa-8x"></i>
                 </a>
             </div>
@@ -20,18 +20,21 @@
     </div>
     
     
-    {%for jogador in jogadores%}
+    {%for clube in clubes%}
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
         <div class="card mt-4 bg-dark text-white" style="width: 20rem;">
-            <img class="card-img-top " src="{{jogador.foto_path}}" alt="Card image cap"
-                style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% if clube.logo_path is not None %}
+            <img class="card-img-top " src="{{clube.logo_path}}" alt="Card image cap"
+            style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% endif %}
+
             <div class="card-body">
-                <h5 class="card-title">{{jogador.nome_jogador}}</h5>
-                <h6 class="card-subtitle mb-2 text-success">---<i class="fas fa-star"></i></h6>
-                <p class="card-text">{{jogador.descricao}}</p>
-                <a href="/detail/{{ jogador.id }}/" class="btn btn-success">Detalhar</a>
-                <a href="/edit/{{ jogador.id }}/" class="btn btn-success">Editar</a>
-                <a href="/delete/{{ jogador.id }}/" class="btn btn-danger">Excluir</a>
+                <h5 class="card-title">{{clube.nome}}</h5>
+                {% comment %} <h6 class="card-subtitle mb-2 text-success">---<i class="fas fa-star"></i></h6> {% endcomment %}
+                <p class="card-text">{{clube.descricao}}</p>
+                <a href="/detail/{{ clube.id }}/" class="btn btn-success">Detalhar</a>
+                <a href="/edit/{{ clube.id }}/" class="btn btn-success">Editar</a>
+                <a href="/delete/{{ clube.id }}/" class="btn btn-danger">Excluir</a>
             </div>
         </div>
     </div>  
@@ -53,5 +56,4 @@
     </div>
     -->
 </div>
-
 {% endblock content %}

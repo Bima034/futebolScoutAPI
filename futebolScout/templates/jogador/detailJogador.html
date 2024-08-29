@@ -8,28 +8,28 @@
         <div class="col-md-12 position-relative">
           <img
             class="mb-3 card-img border border-success border-5"
-            src="{% static 'imgs/HALAND_DETAIL.png' %}"
+            src="{{jogador.fotoCapa_path}}"
             alt="Card image cap"
           />
         </div>
       </div>
       
     <div class="d-flex justify-content-between align-items-center">
-      <h5 class="card-title text-success"> Nota: 8,5/10 <i class="fas fa-star"></i></h5>
+      <h5 class="card-title text-success"> Nota: --- <i class="fas fa-star"></i></h5>
         <a href="#" class="btn btn-success">Avaliar</a>
       </div>
-      <h5 class="card-title ">Erling Haaland</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Jogador de futebol Norueguês</h6>
+      <h5 class="card-title ">{{jogador.nome_jogador}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Jogador de futebol da {{jogador.nacionalidade}}</h6>
     <p class="card-text">
-        Erling Braut Haaland nascido em 21 de julho de 2000 é um futebolista norueguês nascido no Reino Unido que atua como centroavante. Atualmente joga pelo Manchester City e pela Seleção Norueguesa. Considerado um dos melhores atacantes do futebol mundial,[5] no ano de 2020 ganhou o prêmio Golden Boy, dado ao melhor jogador com idade abaixo de 21 anos atuando na Europa.
+      {{jogador.descricao}}
     </p>
     <ul class="list-group list-group-flush">
       <li class="list-group-item bg-dark"></li>
-      <li class="list-group-item bg-dark text-white">Nascimento: 21 de julho de 2000 (24 anos)</li>
-      <li class="list-group-item bg-dark text-white">Clube atual: Manchester City</li>
-      <li class="list-group-item bg-dark text-white">Nacionalidade: Norueguês</li>
-      <li class="list-group-item bg-dark text-white">Altura: 1,95m</li>
-      <li class="list-group-item bg-dark text-white mb-4">Pé: canhoto</li>  
+      <li class="list-group-item bg-dark text-white">Nascimento: --- </li>
+      <li class="list-group-item bg-dark text-white">Clube atual: --- </li>
+      <li class="list-group-item bg-dark text-white">Nacionalidade: {{jogador.nacionalidade}}</li>
+      <li class="list-group-item bg-dark text-white">Altura: {{jogador.altura}}</li>
+      <li class="list-group-item bg-dark text-white mb-4">Pé: {{jogador.melhor_pe}}</li>  
     </ul>
     <div class="card-footer d-flex align-items-center justify-content-between">
       <div class="form-group w-100">

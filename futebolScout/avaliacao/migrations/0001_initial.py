@@ -9,21 +9,20 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('clube', '__first__'),
-        ('federacao', '__first__'),
+        ('accounts', '0001_initial'),
+        ('jogador', '__first__'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Campeonato',
+            name='Avaliacao',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome', models.CharField(max_length=100)),
-                ('nameRights', models.CharField(max_length=100)),
+                ('nota', models.FloatField()),
                 ('data_criacao', models.DateTimeField(auto_now_add=True)),
                 ('data_atualizacao', models.DateTimeField(auto_now=True)),
-                ('clubes', models.ManyToManyField(to='clube.clube')),
-                ('federacao', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='federacao.federacao')),
+                ('jogador', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='jogador.jogador')),
+                ('pessoa', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.pessoa')),
             ],
         ),
     ]
