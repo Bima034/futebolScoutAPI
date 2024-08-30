@@ -14,6 +14,7 @@ class Campeonato(models.Model):
     data_atualizacao = models.DateTimeField(auto_now=True)
     logo_path = models.ImageField(upload_to='imagens/campeonato/', null=True, blank=True)
     descricao = models.TextField(null=True, blank=True)
+    nota_media = models.FloatField(default=0.0, editable=False)
 
 
     

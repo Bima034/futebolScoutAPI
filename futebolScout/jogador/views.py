@@ -3,13 +3,27 @@ from django.contrib.auth.decorators import login_required
 from .forms import JogadorForm
 from django.http import HttpResponseRedirect
 from .models import Jogador
+from clube.models import Clube
+from federacao.models import Federacao
+from campeonato.models import Campeonato
 from avaliacao.models import AvaliacaoJogador
 from accounts.models import Pessoa
 
 
 def dashboard(request):
+    top_jogadores = Jogador.objects.order_by('-nota_media')[:3]
+    top_clubes = Clube.objects.order_by('-nota_media')[:3]
+    top_federacoes = Federacao.objects.order_by('-nota_media')[:3]
+    top_campeonatos = Campeonato.objects.order_by('-nota_media')[:3]
 
-    return render(request, "dashboard.html", {})
+    contexto = {
+        'top_jogadores': top_jogadores,
+        'top_clubes': top_clubes,
+        'top_federacoes': top_federacoes,
+        'top_campeonatos': top_campeonatos,
+    }
+
+    return render(request, "dashboard.html", contexto)
 
 
 def listJogador(request):
@@ -19,7 +33,7 @@ def listJogador(request):
 @login_required
 def detailJogador(request, jogador_id):
 
-    #AVALIANDO
+    #AVALIANDO JOGADOR
     if request.method == 'POST':
         jogador = Jogador.objects.get(pk=jogador_id)
         valor = float(request.POST.get('nota', 0))

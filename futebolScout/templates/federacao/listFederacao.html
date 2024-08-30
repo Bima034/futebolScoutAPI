@@ -30,7 +30,7 @@
                 <div class="d-flex justify-content-between">
                     <a href="/federacao/detail/{{ federacao.id }}" class="btn btn-success">Detalhar</a>
                     <a href="/federacao/edit/{{ federacao.id }}" class="btn btn-success">Editar</a>
-                    <form method='POST' action="/federacao/delete/{{ federacao.id }}/">
+                    <form method='POST' action="/federacao/delete/{{ federacao.id }}">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Excluir</button>
                     </form>

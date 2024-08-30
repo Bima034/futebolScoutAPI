@@ -1,152 +1,212 @@
-{% extends 'base.html' %} {% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-
 <div class="row justify-content-center mt-4">
+  <!-- Cartão Jogadores -->
   <div class="col-xl-3 col-md-6">
     <div class="card bg-dark text-white mb-4">
       <div class="card-body">Jogadores</div>
       <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-white stretched-link" href="#">View Details</a>
+        <a class="small text-white stretched-link" href="/jogador/">Ver Mais</a>
         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
       </div>
     </div>
   </div>
+  
+  <!-- Cartão Clubes -->
   <div class="col-xl-3 col-md-6">
     <div class="card bg-dark text-white mb-4">
       <div class="card-body">Clubes</div>
-      <div
-        class="card-footer d-flex align-items-center justify-content-between"
-      >
-        <a class="small text-white stretched-link" href="#">View Details</a>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-white stretched-link" href="/clube/">Ver Mais</a>
         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
       </div>
     </div>
   </div>
+
+  <!-- Cartão Federações -->
   <div class="col-xl-3 col-md-6">
     <div class="card bg-dark text-white mb-4">
-      <div class="card-body">Seleções</div>
-      <div
-        class="card-footer d-flex align-items-center justify-content-between"
-      >
-        <a class="small text-white stretched-link" href="#">View Details</a>
+      <div class="card-body">Federações</div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-white stretched-link" href="/federacao/">Ver Mais</a>
         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
       </div>
     </div>
   </div>
+
+  <!-- Cartão Campeonatos -->
   <div class="col-xl-3 col-md-6">
     <div class="card bg-dark text-white mb-4">
       <div class="card-body">Campeonatos</div>
-      <div
-        class="card-footer d-flex align-items-center justify-content-between"
-      >
-        <a class="small text-white stretched-link" href="#">View Details</a>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-white stretched-link" href="/campeonato/">Ver Mais</a>
         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xl-12">
-    <!-- Jogadores Bem Avaliados -->
-    <div class="card mb-4 bg-dark text-white">
-      <div class="card-header">
-        <i class="fa-solid fa-trophy me-1"></i>
-        Jogadores Bem Avaliados
-      </div>
-      <div class="card-body row">
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
-          <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
-              <img class="card-img-top " src="{% static 'imgs/HAALAND.png' %}" alt="Card image cap" style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
-              <div class="card-body">
-                  <h5 class="card-title">Erling Haaland</h5>
-                  <h6 class="card-subtitle mb-2 text-success">8,5/10 <i class="fas fa-star"></i></h6>
-                  <p class="card-text">Erling Braut Haaland é um futebolista norueguês nascido no Reino Unido que atua como centroavante. Atualmente joga pelo Manchester City e pela Seleção Norueguesa.</p>
-                  <a href="http://127.0.0.1:8000/jogador/detail" class="btn btn-success">Detalhar</a>
-              </div>
-          </div>
-      </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
-          <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
-              <img class="card-img-top" src="{% static 'imgs/HAALAND.png' %}" alt="Card image cap" style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
-              <div class="card-body">
-                  <h5 class="card-title">Erling Haaland</h5>
-                  <h6 class="card-subtitle mb-2 text-success">8,5/10 <i class="fas fa-star"></i></h6>
-                  <p class="card-text">Erling Braut Haaland é um futebolista norueguês nascido no Reino Unido que atua como centroavante. Atualmente joga pelo Manchester City e pela Seleção Norueguesa.</p>
-                  <a href="#" class="btn btn-success">Detalhar</a>
-              </div>
-          </div>
-      </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
-            <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
-                <img class="card-img-top " src="{% static 'imgs/HAALAND.png' %}" alt="Card image cap" style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
-                <div class="card-body">
-                    <h5 class="card-title">Erling Haaland</h5>
-                    <h6 class="card-subtitle mb-2 text-success">8,5/10 <i class="fas fa-star"></i></h6>
-                    <p class="card-text">Erling Braut Haaland é um futebolista norueguês nascido no Reino Unido que atua como centroavante. Atualmente joga pelo Manchester City e pela Seleção Norueguesa.</p>
-                    <a href="#" class="btn btn-success">Detalhar</a>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-success " href="http://127.0.0.1:8000/jogador/list">Ver Todos Jogadores</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-12 ">
-    <div class="card mb-4 bg-dark text-white">
-      <div class="card-header">
-        <i class="fa-solid fa-trophy me-1"></i>
-        Clubes Bem Avaliados
-      </div>
-      <div class="card-body">
-      </div>
-      <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-success " href="#">Ver Todos Clubes</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-12">
-    <div class="card mb-4 bg-dark text-white">
-      <div class="card-header">
-        <i class="fa-solid fa-trophy me-1"></i>
-        Seleções Bem Avaliados
-      </div>
-      <div class="card-body">
-      </div>
-      <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-success " href="#">Ver Todas Seleções</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-12">
-    <div class="card mb-4 bg-dark text-white">
-      <div class="card-header">
-        <i class="fa-solid fa-trophy me-1"></i>
-        Campeonatos Bem Avaliados
-      </div>
-      <div class="card-body">
-      </div>
-      <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-success " href="#">Ver Todos Campeonatos</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-12">
-    <div class="card mb-4 bg-dark text-white">
-      <div class="card-header">
-        <i class="fa-solid fa-trophy me-1"></i>
-        Federações Bem Avaliados
-      </div>
-      <div class="card-body">
-      </div>
-      <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-success " href="#">Ver Todas Federações</a>
       </div>
     </div>
   </div>
 </div>
 
+<div class="row">
+  <!-- Top 3 Jogadores -->
+  <div class="col-xl-12">
+    <div class="card mb-4 bg-dark text-white">
+      <div class="card-header">
+        <i class="fa-solid fa-trophy me-1"></i> Top 3 Jogadores
+      </div>
+      <div class="card-body row">
+        {% for jogador in top_jogadores %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
+          <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
+            {% if jogador.foto_path %}
+              <img class="card-img-top" src="{{ jogador.foto_path }}" alt="Card image cap"
+                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% else %}
+              <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
+                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ jogador.nome_jogador }}</h5>
+              <h6 class="card-subtitle mb-2 text-success">{{ jogador.nota_media }}/10<i class="fas fa-star"></i></h6>
+              <p class="card-text">{{ jogador.descricao|slice:":180" }}{% if jogador.descricao|length > 180 %}...{% endif %}</p>
+              <div class="d-flex justify-content-between">
+                <a href="/jogador/detail/{{ jogador.id }}" class="btn btn-success">Detalhar</a>
+                <a href="/jogador/edit/{{ jogador.id }}" class="btn btn-success">Editar</a>
+                <form method='POST' action="/jogador/delete/{{ jogador.id }}/">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-success" href="/jogador/">Ver Todos Jogadores</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top 3 Clubes -->
+  <div class="col-xl-12">
+    <div class="card mb-4 bg-dark text-white">
+      <div class="card-header">
+        <i class="fa-solid fa-trophy me-1"></i> Top 3 Clubes
+      </div>
+      <div class="card-body row">
+        {% for clube in top_clubes %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
+          <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
+            {% if clube.logo_path %}
+              <img class="card-img-top" src="{{ clube.logo_path }}" alt="Card image cap"
+                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% else %}
+              <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
+                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ clube.nome }}</h5>
+              <h6 class="card-subtitle mb-2 text-success">{{ clube.nota_media }}/10<i class="fas fa-star"></i></h6>
+              <p class="card-text">{{ clube.descricao|slice:":180" }}{% if clube.descricao|length > 180 %}...{% endif %}</p>
+              <div class="d-flex justify-content-between">
+                <a href="/clube/detail/{{ clube.id }}" class="btn btn-success">Detalhar</a>
+                <a href="/clube/edit/{{ clube.id }}" class="btn btn-success">Editar</a>
+                <form method='POST' action="/clube/delete/{{ clube.id }}/">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-success" href="/clube/">Ver Todos Clubes</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top 3 Federações -->
+  <div class="col-xl-12">
+    <div class="card mb-4 bg-dark text-white">
+      <div class="card-header">
+        <i class="fa-solid fa-trophy me-1"></i> Top 3 Federações
+      </div>
+      <div class="card-body row">
+        {% for federacao in top_federacoes %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
+          <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
+            {% if federacao.logo_path %}
+              <img class="card-img-top" src="{{ federacao.logo_path }}" alt="Card image cap"
+                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% else %}
+              <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
+                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ federacao.nome }}</h5>
+              <h6 class="card-subtitle mb-2 text-success">{{ federacao.nota_media }}/10<i class="fas fa-star"></i></h6>
+              <p class="card-text">{{ federacao.descricao|slice:":180" }}{% if federacao.descricao|length > 180 %}...{% endif %}</p>
+              <div class="d-flex justify-content-between">
+                <a href="/federacao/detail/{{ federacao.id }}" class="btn btn-success">Detalhar</a>
+                <a href="/federacao/edit/{{ federacao.id }}" class="btn btn-success">Editar</a>
+                <form method='POST' action="/federacao/delete/{{ federacao.id }}/">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-success" href="/federacao/">Ver Todas Federações</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top 3 Campeonatos -->
+  <div class="col-xl-12">
+    <div class="card mb-4 bg-dark text-white">
+      <div class="card-header">
+        <i class="fa-solid fa-trophy me-1"></i> Top 3 Campeonatos
+      </div>
+      <div class="card-body row">
+        {% for campeonato in top_campeonatos %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
+          <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
+            {% if campeonato.logo_path %}
+              <img class="card-img-top" src="{{ campeonato.logo_path }}" alt="Card image cap"
+                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% else %}
+              <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
+                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ campeonato.nome }}</h5>
+              <h6 class="card-subtitle mb-2 text-success">{{ campeonato.nota_media }}/10<i class="fas fa-star"></i></h6>
+              <p class="card-text">{{ campeonato.descricao|slice:":180" }}{% if campeonato.descricao|length > 180 %}...{% endif %}</p>
+              <div class="d-flex justify-content-between">
+                <a href="/campeonato/detail/{{ campeonato.id }}" class="btn btn-success">Detalhar</a>
+                <a href="/campeonato/edit/{{ campeonato.id }}" class="btn btn-success">Editar</a>
+                <form method='POST' action="/campeonato/delete/{{ campeonato.id }}/">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="small text-success" href="/campeonato/">Ver Todos Campeonatos</a>
+      </div>
+    </div>
+  </div>
 
 {% endblock content %}
