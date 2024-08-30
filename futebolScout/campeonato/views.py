@@ -1,6 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .forms import CampeonatoForm
 from .models import Campeonato
+from accounts.models import Pessoa
+from avaliacao.models import AvaliacaoCampeonato
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -22,7 +25,34 @@ def add(request):
     form = CampeonatoForm()
     return render(request, 'campeonato/addCampeonato.html', {'form': form})
 
+@login_required
 def detail(request, id):
+
+    #AVALIANDO CAMPEONATO
+    if request.method == 'POST':
+        campeonato = Campeonato.objects.get(pk=id)
+        valor = float(request.POST.get('nota', 0))
+
+        try:
+            pessoa = Pessoa.objects.get(pk=request.user.id)  
+        except Pessoa.DoesNotExist:
+            return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'error': 'Perfil de Pessoa não encontrado.'})
+
+        avaliacao_existente = AvaliacaoCampeonato.objects.filter(pessoa=pessoa, campeonato=campeonato).first()
+
+        if avaliacao_existente:
+            avaliacao_existente.nota = valor
+            avaliacao_existente.save()
+        else:
+            AvaliacaoCampeonato.objects.create(
+                pessoa=pessoa,
+                campeonato=campeonato,
+                nota=valor
+            )
+
+        campeonato.refresh_from_db()
+        return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'valor': valor})
+
     if id:
         try:
             campeonato = Campeonato.objects.get(id=id)

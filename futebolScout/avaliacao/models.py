@@ -3,6 +3,7 @@ from accounts.models import Pessoa
 from jogador.models import Jogador
 from clube.models import Clube
 from federacao.models import Federacao
+from campeonato.models import Campeonato
 
 class AvaliacaoJogador(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
@@ -66,3 +67,23 @@ class AvaliacaoFederacao(models.Model):
         nota_media_arredondada = round(nota_media or 0.0, 1)
         federacao.nota_media = nota_media_arredondada
         federacao.save()
+
+class AvaliacaoCampeonato(models.Model):
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
+    campeonato = models.ForeignKey(Campeonato, on_delete=models.CASCADE)
+    nota = models.FloatField()
+    
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    data_atualizacao = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.atualizar_nota_media()
+
+    def atualizar_nota_media(self):
+        campeonato = self.campeonato
+        avaliacoes = AvaliacaoCampeonato.objects.filter(campeonato=campeonato)
+        nota_media = avaliacoes.aggregate(models.Avg('nota'))['nota__avg']
+        nota_media_arredondada = round(nota_media or 0.0, 1)
+        campeonato.nota_media = nota_media_arredondada
+        campeonato.save()

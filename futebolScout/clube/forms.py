@@ -28,7 +28,7 @@ class ClubeCreaterForm(forms.ModelForm):
     
     class Meta:
         model = Clube
-        fields = ['nome', 'sigla', 'pais', 'federacao', 'logoPath', 'treinador', 'presidente', 'estadio', 'fundacao']
+        fields = ['nome', 'sigla', 'descricao', 'pais', 'federacao', 'logoPath', 'treinador', 'presidente', 'estadio', 'fundacao']
     
     def clean_sigla(self):
         return self.cleaned_data['sigla'].upper()

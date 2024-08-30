@@ -10,6 +10,7 @@ class FederacaoCreaterForm(forms.ModelForm):
     class Meta:
         model = Federacao
         fields = '__all__'
+        exclude = ['comentarios']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

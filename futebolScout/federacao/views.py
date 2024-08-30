@@ -2,12 +2,42 @@ from django.shortcuts import render
 from .forms import FederacaoCreaterForm
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Federacao
+from accounts.models import Pessoa
+from avaliacao.models import AvaliacaoFederacao
+from django.contrib.auth.decorators import login_required
 
 
 def listFederacao(request):
     return render(request, "federacao/listFederacao.html", {'federacoes': Federacao.objects.all()})
 
+@login_required
 def detailFederacao(request, id_federacao):
+
+    #AVALIANDO FEDERAÇÃO
+    if request.method == 'POST':
+        federacao = Federacao.objects.get(pk=id_federacao)
+        valor = float(request.POST.get('nota', 0))
+
+        try:
+            pessoa = Pessoa.objects.get(pk=request.user.id)  
+        except Pessoa.DoesNotExist:
+            return render(request, 'federacao/detailFederacao.html', {'federacao': federacao, 'error': 'Perfil de Pessoa não encontrado.'})
+
+        avaliacao_existente = AvaliacaoFederacao.objects.filter(pessoa=pessoa, federacao=federacao).first()
+
+        if avaliacao_existente:
+            avaliacao_existente.nota = valor
+            avaliacao_existente.save()
+        else:
+            AvaliacaoFederacao.objects.create(
+                pessoa=pessoa,
+                federacao=federacao,
+                nota=valor
+            )
+
+        federacao.refresh_from_db()
+        return render(request, 'federacao/detailFederacao.html', {'federacao': federacao, 'valor': valor})
+
     if request.method == 'GET':
         federacao = Federacao.objects.get(id=id_federacao)
         print(federacao.afiliada.all())
