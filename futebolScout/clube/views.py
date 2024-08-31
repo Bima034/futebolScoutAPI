@@ -12,8 +12,9 @@ def add(request):
         form = ClubeCreaterForm(request.POST)
         if form.is_valid():
             clube =  form.save(commit=False)
-            form.save(commit=True)
-            
+            clube.save()
+            if form.cleaned_data['federacoes'] is not None:
+                form.save_m2m()
             return HttpResponseRedirect(f'/clube/detail/{clube.id}')
         else:
             print('Form Clube nao é válido')

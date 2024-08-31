@@ -18,7 +18,7 @@ class ClubeCreaterForm(forms.ModelForm):
     nome = forms.CharField(label='Nome', max_length=100)
     sigla = forms.CharField(label='Sigla', max_length=5)
     pais = forms.ChoiceField(label='País de origem', choices=lista)
-    federacao = forms.ModelMultipleChoiceField(label='Federações', queryset=Federacao.objects.all(), required=False)
+    federacoes = forms.ModelMultipleChoiceField(label='Federações', queryset=Federacao.objects.all(), required=False)
     logoPath = forms.ImageField(label='Logo', required=False)
     treinador = forms.CharField(label='Treinador', max_length=100, required=False)
     presidente = forms.CharField(label='Presidente', max_length=100, required=False)
@@ -28,7 +28,7 @@ class ClubeCreaterForm(forms.ModelForm):
     
     class Meta:
         model = Clube
-        fields = ['nome', 'sigla', 'pais', 'federacao', 'logoPath', 'treinador', 'presidente', 'estadio', 'fundacao']
+        fields = ['nome', 'sigla', 'pais', 'federacoes', 'logoPath', 'treinador', 'presidente', 'estadio', 'fundacao']
     
     def clean_sigla(self):
         return self.cleaned_data['sigla'].upper()

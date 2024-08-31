@@ -1,6 +1,5 @@
 from django.db import models
 from accounts.models import Pessoa
-from jogador.models import Jogador
 from federacao.models import Federacao
 # Create your models here.
 
