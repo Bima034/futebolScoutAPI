@@ -4,11 +4,13 @@ from .models import Campeonato
 from accounts.models import Pessoa
 from avaliacao.models import AvaliacaoCampeonato
 from django.contrib.auth.decorators import login_required
+from accounts.views import isGestor
+
 
 # Create your views here.
 @login_required
 def list(request):
-    return render(request, 'campeonato/listCampeonato.html', {'campeonatos': Campeonato.objects.all()})
+    return render(request, 'campeonato/listCampeonato.html', {'campeonatos': Campeonato.objects.all(), 'isGestor': isGestor(request.user)})
 
 @login_required
 def add(request):

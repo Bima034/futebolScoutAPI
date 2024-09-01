@@ -5,11 +5,13 @@ from .models import Clube
 from accounts.models import Pessoa
 from avaliacao.models import AvaliacaoClube
 from django.contrib.auth.decorators import login_required
+from accounts.views import isGestor
+
 
 # Create your views here.
 @login_required
 def list(request):
-    return render(request, 'clube/listClube.html', {'clubes': Clube.objects.all()})
+    return render(request, 'clube/listClube.html', {'clubes': Clube.objects.all(), 'isGestor': isGestor(request.user)})
 
 @login_required
 def add(request):

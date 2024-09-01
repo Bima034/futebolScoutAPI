@@ -22,6 +22,9 @@
             {% if federacao.logo_path %}
                 <img class="card-img-top " src="{{ federacao.logo_path.url }}" alt="Card image cap"
                 style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+            {% else %}
+                <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
+                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% endif %}
 
             <div class="card-body">
@@ -30,11 +33,13 @@
                 <p class="card-text">{{ federacao.descricao|slice:":180" }}{% if federacao.descricao|length > 180 %}...{% endif %}</p>
                 <div class="d-flex justify-content-between">
                     <a href="/federacao/detail/{{ federacao.id }}" class="btn btn-success">Detalhar</a>
+                    {% if isGestor %}
                     <a href="/federacao/edit/{{ federacao.id }}" class="btn btn-success">Editar</a>
                     <form method='POST' action="/federacao/delete/{{ federacao.id }}">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Excluir</button>
                     </form>
+                    {% endif %}
                 </div>
             </div>
         </div>

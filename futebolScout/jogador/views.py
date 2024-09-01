@@ -8,6 +8,7 @@ from federacao.models import Federacao
 from campeonato.models import Campeonato
 from avaliacao.models import AvaliacaoJogador
 from accounts.models import Pessoa
+from accounts.views import isGestor
 
 @login_required
 def dashboard(request):
@@ -21,6 +22,7 @@ def dashboard(request):
         'top_clubes': top_clubes,
         'top_federacoes': top_federacoes,
         'top_campeonatos': top_campeonatos,
+        'isGestor': isGestor(request.user)
     }
 
     return render(request, "dashboard.html", contexto)
@@ -28,7 +30,7 @@ def dashboard(request):
 @login_required
 def listJogador(request):
     jogadores = Jogador.objects.all()
-    return render(request, "jogador/listJogador.html", {"jogadores": jogadores})
+    return render(request, "jogador/listJogador.html", {"jogadores": jogadores, 'isGestor': isGestor(request.user)})
 
 @login_required
 def detailJogador(request, jogador_id):
@@ -41,18 +43,14 @@ def detailJogador(request, jogador_id):
         try:
             pessoa = Pessoa.objects.get(pk=request.user.id)  
         except Pessoa.DoesNotExist:
-            # Lide com o caso onde a Pessoa não existe
             return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'error': 'Perfil de Pessoa não encontrado.'})
 
-        # Tenta encontrar a avaliação existente
         avaliacao_existente = AvaliacaoJogador.objects.filter(pessoa=pessoa, jogador=jogador).first()
 
         if avaliacao_existente:
-            # Atualiza a avaliação existente
             avaliacao_existente.nota = valor
             avaliacao_existente.save()
         else:
-            # Cria uma nova avaliação
             AvaliacaoJogador.objects.create(
                 pessoa=pessoa,
                 jogador=jogador,

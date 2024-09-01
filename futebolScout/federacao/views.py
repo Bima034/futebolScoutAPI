@@ -5,10 +5,11 @@ from .models import Federacao
 from accounts.models import Pessoa
 from avaliacao.models import AvaliacaoFederacao
 from django.contrib.auth.decorators import login_required
+from accounts.views import isGestor
 
 @login_required
 def listFederacao(request):
-    return render(request, "federacao/listFederacao.html", {'federacoes': Federacao.objects.all()})
+    return render(request, "federacao/listFederacao.html", {'federacoes': Federacao.objects.all(), 'isGestor': isGestor(request.user)})
 
 @login_required
 def detailFederacao(request, id_federacao):
