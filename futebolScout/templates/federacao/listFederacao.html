@@ -29,7 +29,7 @@
 
             <div class="card-body">
                 <h5 class="card-title">{{federacao.nome}}</h5>
-                <h6 class="card-subtitle mb-2 text-success">{{federacao.nota_media}}<i class="fas fa-star"></i></h6>
+                <h6 class="card-subtitle mb-2 text-success">{{federacao.nota_media}}/10<i class="fas fa-star"></i></h6>
                 <p class="card-text">{{ federacao.descricao|slice:":180" }}{% if federacao.descricao|length > 180 %}...{% endif %}</p>
                 <div class="d-flex justify-content-between">
                     <a href="/federacao/detail/{{ federacao.id }}" class="btn btn-success">Detalhar</a>
