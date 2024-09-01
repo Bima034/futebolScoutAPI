@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'clube',
     'federacao',
     'avaliacao',
+    'pesquisa',
     #outrosApps
     'crispy_forms',
     'crispy_bootstrap5',
