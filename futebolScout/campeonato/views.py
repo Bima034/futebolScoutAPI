@@ -39,6 +39,7 @@ def detail(request, id):
             return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'error': 'Perfil de Pessoa não encontrado.'})
 
         avaliacao_existente = AvaliacaoCampeonato.objects.filter(pessoa=pessoa, campeonato=campeonato).first()
+        print(avaliacao_existente)
 
         if avaliacao_existente:
             avaliacao_existente.nota = valor
