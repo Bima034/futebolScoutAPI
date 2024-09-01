@@ -74,7 +74,7 @@
                 <a href="/jogador/detail/{{ jogador.id }}" class="btn btn-success">Detalhar</a>
                 {% if isGestor %}
                 <a href="/jogador/edit/{{ jogador.id }}" class="btn btn-success">Editar</a>
-                <form method='POST' action="/jogador/delete/{{ jogador.id }}">
+                <form method='POST' action="/jogador/delete/{{ jogador.id }}/">
                   {% csrf_token %}
                   <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
