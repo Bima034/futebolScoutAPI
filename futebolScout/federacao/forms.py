@@ -4,7 +4,7 @@ import requests
 
 class FederacaoCreaterForm(forms.ModelForm):
     localidade = forms.ChoiceField(label='Localidade')
-    fundacao = forms.DateField(label='Fundação', widget=forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'), input_formats=['%Y-%m-%d'])
+    fundacao = forms.DateField(label='Data de Fundação', widget=forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'), input_formats=['%Y-%m-%d'])
     afiliada = forms.ModelMultipleChoiceField(label='Afiliada', queryset=Federacao.objects.all(), required=False)
     
     class Meta:

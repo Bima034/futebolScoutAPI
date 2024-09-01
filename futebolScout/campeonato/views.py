@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from .forms import CampeonatoForm
 from .models import Campeonato
 from accounts.models import Pessoa
@@ -12,7 +12,7 @@ def list(request):
 
 def add(request):
     if request.method == 'POST':
-        form = CampeonatoForm(request.POST)
+        form = CampeonatoForm(request.POST, request.FILES)
         if form.is_valid():
             campeonato =  form.save(commit=False)
             form.save(commit=True)
@@ -64,15 +64,17 @@ def detail(request, id):
     
 
 def edit(request, id):
-    if id:
-        campeonato = Campeonato.objects.get(id=id)
-        form = CampeonatoForm(request.POST or None, instance=campeonato)
+    campeonato = get_object_or_404(Campeonato, id=id)
+
+    if request.method == 'POST':
+        form = CampeonatoForm(request.POST, request.FILES, instance=campeonato)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(f'/campeonato/detail/{campeonato.id}')
-        return render(request, 'campeonato/editCampeonato.html', {'form': form})
     else:
-        return HttpResponseRedirect('/campeonato/', {'error': 'Campeonato não encontrado'})
+        form = CampeonatoForm(instance=campeonato)
+
+    return render(request, 'campeonato/editCampeonato.html', {'form': form})
 
 def delete(request, id):
     if request.method == 'POST':

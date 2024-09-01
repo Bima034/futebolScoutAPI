@@ -7,7 +7,7 @@ class Clube(models.Model):
     nome = models.CharField(max_length=100)
     sigla = models.CharField(max_length=5)
     pais = models.CharField(max_length=100)
-    logo_path = models.ImageField(upload_to='imagens/clube/', null=True, blank=True)
+    logo_path = models.ImageField(upload_to='clube/', null=True, blank=True)
     treinador = models.CharField(max_length=100, null=True, blank=True)
     presidente = models.CharField(max_length=100, null=True, blank=True)
     estadio = models.CharField(max_length=250, null=True, blank=True)
