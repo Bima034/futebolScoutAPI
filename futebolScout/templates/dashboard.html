@@ -62,9 +62,6 @@
             {% if jogador.foto_path %}
               <img class="card-img-top" src="{{ jogador.foto_path.url }}" alt="Card image cap"
                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
-            {% else %}
-              <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
-                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ jogador.nome_jogador }}</h5>
@@ -73,7 +70,7 @@
               <div class="d-flex justify-content-between">
                 <a href="/jogador/detail/{{ jogador.id }}" class="btn btn-success">Detalhar</a>
                 <a href="/jogador/edit/{{ jogador.id }}" class="btn btn-success">Editar</a>
-                <form method='POST' action="/jogador/delete/{{ jogador.id }}/">
+                <form method='POST' action="/jogador/delete/{{ jogador.id }}">
                   {% csrf_token %}
                   <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
@@ -102,9 +99,6 @@
             {% if clube.logo_path %}
               <img class="card-img-top" src="{{ clube.logo_path.url }}" alt="Card image cap"
                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
-            {% else %}
-              <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
-                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ clube.nome }}</h5>
@@ -113,7 +107,7 @@
               <div class="d-flex justify-content-between">
                 <a href="/clube/detail/{{ clube.id }}" class="btn btn-success">Detalhar</a>
                 <a href="/clube/edit/{{ clube.id }}" class="btn btn-success">Editar</a>
-                <form method='POST' action="/clube/delete/{{ clube.id }}/">
+                <form method='POST' action="/clube/delete/{{ clube.id }}">
                   {% csrf_token %}
                   <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
@@ -142,9 +136,6 @@
             {% if federacao.logo_path %}
               <img class="card-img-top" src="{{ federacao.logo_path.url }}" alt="Card image cap"
                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
-            {% else %}
-              <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
-                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ federacao.nome }}</h5>
@@ -153,7 +144,7 @@
               <div class="d-flex justify-content-between">
                 <a href="/federacao/detail/{{ federacao.id }}" class="btn btn-success">Detalhar</a>
                 <a href="/federacao/edit/{{ federacao.id }}" class="btn btn-success">Editar</a>
-                <form method='POST' action="/federacao/delete/{{ federacao.id }}/">
+                <form method='POST' action="/federacao/delete/{{ federacao.id }}">
                   {% csrf_token %}
                   <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
@@ -182,9 +173,6 @@
             {% if campeonato.logo_path %}
               <img class="card-img-top" src="{{ campeonato.logo_path.url }}" alt="Card image cap"
                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
-            {% else %}
-              <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
-                   style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ campeonato.nome }}</h5>
@@ -193,7 +181,7 @@
               <div class="d-flex justify-content-between">
                 <a href="/campeonato/detail/{{ campeonato.id }}" class="btn btn-success">Detalhar</a>
                 <a href="/campeonato/edit/{{ campeonato.id }}" class="btn btn-success">Editar</a>
-                <form method='POST' action="/campeonato/delete/{{ campeonato.id }}/">
+                <form method='POST' action="/campeonato/delete/{{ campeonato.id }}">
                   {% csrf_token %}
                   <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>

@@ -7,9 +7,7 @@
     <div class="row justify-content-center ">
         <div class="col-md-12 position-relative">
           {% if clube.logo_path %}
-              <img class="mb-3 card-img border border-success border-5" src="{{ clube.logo_path.url }}" alt="Card image cap" style="max-height: 500px" />
-          {% else %}
-              <img class="mb-3 card-img border border-success border-5" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"/>
+              <img class="mb-3 card-img border border-success border-5" src="{{ clube.logo_path.url }}" alt="Card image cap" style="max-height: 700px;"/>
           {% endif %}
         </div>
       </div>
@@ -33,6 +31,7 @@
         {% endfor %}
       </li> 
     </ul>
+    <!--
     <div class="card-footer d-flex align-items-center justify-content-between">
       <div class="form-group w-100">
         <label for="exampleFormControlTextarea1">Adicionar Comentario</label>
@@ -40,6 +39,7 @@
         <a href="#" class="btn btn-success mt-1">Comentar</a>
       </div>
     </div>
+    -->
   </div>
 </div>
 

@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
 
+<h2 class="text-center text-success mt-3">Clubes</h2>
 <div class="row justify-content-center mt-4" style="min-height: 540px;">
-    <h2 class="text-center text-success">Clubes</h2>
 
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center"> 
         <div class="card mt-4 bg-dark text-white border-success" style="width: 20rem; border: 4px solid #198754;">
@@ -21,9 +21,6 @@
         <div class="card mt-4 bg-dark text-white" style="width: 20rem;">
             {% if clube.logo_path %}
                 <img class="card-img-top" src="{{ clube.logo_path.url }}" alt="Card image cap"
-                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
-            {% else %}
-                <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
                     style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% endif %}
 

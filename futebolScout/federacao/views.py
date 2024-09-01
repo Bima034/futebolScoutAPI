@@ -6,7 +6,7 @@ from accounts.models import Pessoa
 from avaliacao.models import AvaliacaoFederacao
 from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def listFederacao(request):
     return render(request, "federacao/listFederacao.html", {'federacoes': Federacao.objects.all()})
 
@@ -44,6 +44,7 @@ def detailFederacao(request, id_federacao):
         return render(request, "federacao/detailFederacao.html", {'federacao': federacao})
     return HttpResponse('Método não permitido', status=405)
 
+@login_required
 def add(request):
     if request.method == 'POST':
         form = FederacaoCreaterForm(request.POST, request.FILES)
@@ -56,6 +57,7 @@ def add(request):
     form = FederacaoCreaterForm()
     return render(request, "federacao/addFederacao.html", {'form': form})
 
+@login_required
 def delete(request, id_federacao):
     if request.method == 'POST':
         try:
@@ -67,6 +69,7 @@ def delete(request, id_federacao):
 
     return HttpResponseRedirect(f'/federacao/detail/{id_federacao}')
 
+@login_required
 def edit(request, id_federacao):
     federacao = get_object_or_404(Federacao, id=id_federacao)
     
