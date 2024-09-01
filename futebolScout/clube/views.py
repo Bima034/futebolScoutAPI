@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import ClubeCreaterForm
 from django.http import HttpResponseRedirect
 from .models import Clube
@@ -12,7 +12,7 @@ def list(request):
 
 def add(request):
     if request.method == 'POST':
-        form = ClubeCreaterForm(request.POST)
+        form = ClubeCreaterForm(request.POST, request.FILES)
         if form.is_valid():
             clube =  form.save(commit=False)
             clube.save()
@@ -64,15 +64,20 @@ def detail(request, id):
         return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
         
 def edit(request, id):
-    if id:
-        clube = Clube.objects.get(id=id)
-        form = ClubeCreaterForm(request.POST or None, instance=clube)
+    clube = get_object_or_404(Clube, id=id)
+    print(clube.fundacao)
+    
+    if request.method == 'POST':
+        form = ClubeCreaterForm(request.POST, request.FILES, instance=clube)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(f'/clube/detail/{clube.id}')
-        return render(request, 'clube/editClube.html', {'form': form})
     else:
-        return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
+        form = ClubeCreaterForm(instance=clube)
+        
+    return render(request, 'clube/editClube.html', {'form': form})
+    
+
         
 def delete(request, id):
     if request.method == 'POST':

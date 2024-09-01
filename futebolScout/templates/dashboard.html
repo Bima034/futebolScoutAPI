@@ -60,7 +60,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
           <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
             {% if jogador.foto_path %}
-              <img class="card-img-top" src="{{ jogador.foto_path }}" alt="Card image cap"
+              <img class="card-img-top" src="{{ jogador.foto_path.url }}" alt="Card image cap"
                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% else %}
               <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
@@ -100,7 +100,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
           <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
             {% if clube.logo_path %}
-              <img class="card-img-top" src="{{ clube.logo_path }}" alt="Card image cap"
+              <img class="card-img-top" src="{{ clube.logo_path.url }}" alt="Card image cap"
                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% else %}
               <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
@@ -140,7 +140,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
           <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
             {% if federacao.logo_path %}
-              <img class="card-img-top" src="{{ federacao.logo_path }}" alt="Card image cap"
+              <img class="card-img-top" src="{{ federacao.logo_path.url }}" alt="Card image cap"
                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% else %}
               <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
@@ -180,7 +180,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
           <div class="card mt-1" style="width: 20rem; background-color: #343a40;">
             {% if campeonato.logo_path %}
-              <img class="card-img-top" src="{{ campeonato.logo_path }}" alt="Card image cap"
+              <img class="card-img-top" src="{{ campeonato.logo_path.url }}" alt="Card image cap"
                    style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% else %}
               <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"

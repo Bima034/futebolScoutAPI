@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import FederacaoCreaterForm
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Federacao
@@ -46,7 +46,7 @@ def detailFederacao(request, id_federacao):
 
 def add(request):
     if request.method == 'POST':
-        form = FederacaoCreaterForm(request.POST)
+        form = FederacaoCreaterForm(request.POST, request.FILES)
         if form.is_valid():
             federacao =  form.save(commit=False)
             federacao.save()
@@ -68,13 +68,13 @@ def delete(request, id_federacao):
     return HttpResponseRedirect(f'/federacao/detail/{id_federacao}')
 
 def edit(request, id_federacao):
+    federacao = get_object_or_404(Federacao, id=id_federacao)
+    
     if request.method == 'GET':
-        federacao = Federacao.objects.get(id=id_federacao)
         form = FederacaoCreaterForm(instance=federacao)
         return render(request, "federacao/editFederacao.html", {'form': form})
     elif request.method == 'POST':
-        federacao = Federacao.objects.get(id=id_federacao)
-        form = FederacaoCreaterForm(request.POST, instance=federacao)
+        form = FederacaoCreaterForm(request.POST, request.FILES, instance=federacao)
         if form.is_valid():
             federacao =  form.save(commit=False)
             federacao.save()

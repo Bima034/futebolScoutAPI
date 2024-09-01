@@ -17,8 +17,8 @@
     {%for jogador in jogadores%}
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
         <div class="card mt-4 bg-dark text-white" style="width: 20rem;">
-            {% if jogador.foto_path is not None %}
-                <img class="card-img-top " src="{{jogador.foto_path}}" alt="Card image cap"
+            {% if jogador.foto_path %}
+                <img class="card-img-top " src="{{ jogador.foto_path.url }}" alt="Card image cap"
                     style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
             {% else %}
                 <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"

@@ -5,8 +5,8 @@
   <div class="card-body">
     <div class="row justify-content-center ">
         <div class="col-md-12 position-relative">
-          {% if federacao.logo_path is not None %}
-              <img class="mb-3 card-img border border-success border-5" src="{{federacao.logo_path}}" alt="Card image cap" />
+          {% if federacao.logo_path %}
+              <img class="mb-3 card-img border border-success border-5" src="{{ federacao.logo_path.url }}" alt="Card image cap" style="max-height: 500px;" />
           {% else %}
               <img class="mb-3 card-img border border-success border-5" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"/>
           {% endif %}

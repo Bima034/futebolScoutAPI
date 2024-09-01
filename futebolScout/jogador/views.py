@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import JogadorForm
 from django.http import HttpResponseRedirect
@@ -70,7 +70,7 @@ def detailJogador(request, jogador_id):
 def addJogador(request):
     
     if request.method == 'POST':
-        form = JogadorForm(request.POST)
+        form = JogadorForm(request.POST, request.FILES)
         if form.is_valid():
             jogador =  form.save(commit=False)
             form.save(commit=True)
@@ -84,12 +84,12 @@ def addJogador(request):
     return render(request, "jogador/addJogador.html", {'form': form})
 
 def editJogador(request, jogador_id):
-
-    jogador = Jogador.objects.get(pk=jogador_id)
+    
+    jogador = get_object_or_404(Jogador, id=jogador_id)
 
     if request.method == "POST":
         
-        form = JogadorForm(request.POST, instance=jogador)
+        form = JogadorForm(request.POST, request.FILES, instance=jogador)
 
         if form.is_valid():
             form.save()
