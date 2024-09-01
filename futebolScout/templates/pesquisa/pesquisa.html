@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <h2 class="text-center text-success">Resultados</h2>
+            <div class="row">
+                {% for resultado in resultado_pesquisa %}
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
+                    <div class="card mt-4 bg-dark text-white" style="width: 20rem;">
+                        {% if resultado.logo_path is not None %}
+                            <img class="card-img-top " src="{{resultado.logo_path}}" alt="Card image cap"
+                                style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+                        {% else %}
+                            <img class="card-img-top" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"
+                                style="height: 300px; object-fit: cover; border-bottom: 2px solid #198754;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{resultado.nome}}</h5>
+                            <h6 class="card-subtitle mb-2 text-success">{{resultado.nota_media}}<i class="fas fa-star"></i></h6>
+                            <p class="card-text">{{ resultado.descricao|slice:":180" }}{% if resultado.descricao|length > 180 %}...{% endif %}</p>
+                            <div class="d-flex justify-content-between">
+                                <a href="/{{resultado.url}}/detail/{{ resultado.id }}" class="btn btn-success">Detalhar</a>
+                                <a href="/{{resultado.url}}/edit/{{ resultado.id }}" class="btn btn-success">Editar</a>
+                                <form method='POST' action="/{{resultado.url}}/delete/{{ resultado.id }}/">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Excluir</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

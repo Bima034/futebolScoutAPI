@@ -20,10 +20,10 @@
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="{% url 'dashboard' %}">FutebolScout</a>
             <!-- Navbar Search-->
-            <form class="form-inline me-auto me-0 me-md-3 my-2 my-md-0 flex-fill">
+            <form class="form-inline me-auto me-0 me-md-3 my-2 my-md-0 flex-fill" action="{% url 'pesquisa' %}">
                 <div class="input-group flex-fill">
                     <button class="btn btn-success" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                    <input class="form-control" type="text" placeholder="Procurar por..." aria-label="Procurar por..." aria-describedby="btnNavbarSearch" />
+                    <input name="query" class="form-control" type="text" placeholder="Procurar por..." aria-label="Procurar por..." aria-describedby="btnNavbarSearch" />
                 </div>
             </form>
             <!-- Navbar-->
