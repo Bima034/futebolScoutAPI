@@ -4,12 +4,15 @@ from .models import Campeonato
 from accounts.models import Pessoa
 from avaliacao.models import AvaliacaoCampeonato
 from django.contrib.auth.decorators import login_required
+from accounts.views import isGestor
+
 
 # Create your views here.
-
+@login_required
 def list(request):
-    return render(request, 'campeonato/listCampeonato.html', {'campeonatos': Campeonato.objects.all()})
+    return render(request, 'campeonato/listCampeonato.html', {'campeonatos': Campeonato.objects.all(), 'isGestor': isGestor(request.user)})
 
+@login_required
 def add(request):
     if request.method == 'POST':
         form = CampeonatoForm(request.POST, request.FILES)
@@ -63,7 +66,7 @@ def detail(request, id):
     else:
         return HttpResponseRedirect('/campeonato/', {'error': 'Campeonato não encontrado'})
     
-
+@login_required
 def edit(request, id):
     campeonato = get_object_or_404(Campeonato, id=id)
 
@@ -77,6 +80,7 @@ def edit(request, id):
 
     return render(request, 'campeonato/editCampeonato.html', {'form': form})
 
+@login_required
 def delete(request, id):
     if request.method == 'POST':
         try:

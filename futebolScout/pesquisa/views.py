@@ -3,6 +3,8 @@ from clube.models import Clube
 from jogador.models import Jogador
 from federacao.models import Federacao
 from campeonato.models import Campeonato
+from accounts.views import isGestor
+
 
 # Create your views here.
 def pesquisa(request):
@@ -63,7 +65,7 @@ def pesquisa(request):
             }
             resultado_pesquisa.append(campeonato_resultado)
         resultado_pesquisa.sort(key=lambda x: (not x['nome'].lower().startswith(query.lower()), x['nome'].lower()))
-        return render(request, 'pesquisa/pesquisa.html', {'resultado_pesquisa': resultado_pesquisa})
+        return render(request, 'pesquisa/pesquisa.html', {'resultado_pesquisa': resultado_pesquisa, 'isGestor': isGestor(request.user)})
         
     except Exception as error:
         print('erro:', error)

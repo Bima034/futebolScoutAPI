@@ -8,8 +8,9 @@ from federacao.models import Federacao
 from campeonato.models import Campeonato
 from avaliacao.models import AvaliacaoJogador
 from accounts.models import Pessoa
+from accounts.views import isGestor
 
-
+@login_required
 def dashboard(request):
     top_jogadores = Jogador.objects.order_by('-nota_media')[:3]
     top_clubes = Clube.objects.order_by('-nota_media')[:3]
@@ -21,14 +22,15 @@ def dashboard(request):
         'top_clubes': top_clubes,
         'top_federacoes': top_federacoes,
         'top_campeonatos': top_campeonatos,
+        'isGestor': isGestor(request.user)
     }
 
     return render(request, "dashboard.html", contexto)
 
-
+@login_required
 def listJogador(request):
     jogadores = Jogador.objects.all()
-    return render(request, "jogador/listJogador.html", {"jogadores": jogadores})
+    return render(request, "jogador/listJogador.html", {"jogadores": jogadores, 'isGestor': isGestor(request.user)})
 
 @login_required
 def detailJogador(request, jogador_id):
@@ -39,34 +41,29 @@ def detailJogador(request, jogador_id):
         valor = float(request.POST.get('nota', 0))
 
         try:
-            pessoa = Pessoa.objects.get(pk=request.user.id)  # Supondo que Pessoa tem um campo user referenciando User
+            pessoa = Pessoa.objects.get(pk=request.user.id)  
         except Pessoa.DoesNotExist:
-            # Lide com o caso onde a Pessoa não existe
             return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'error': 'Perfil de Pessoa não encontrado.'})
 
-        # Tenta encontrar a avaliação existente
         avaliacao_existente = AvaliacaoJogador.objects.filter(pessoa=pessoa, jogador=jogador).first()
 
         if avaliacao_existente:
-            # Atualiza a avaliação existente
             avaliacao_existente.nota = valor
             avaliacao_existente.save()
         else:
-            # Cria uma nova avaliação
             AvaliacaoJogador.objects.create(
                 pessoa=pessoa,
                 jogador=jogador,
                 nota=valor
             )
 
-        # Atualiza o objeto 'jogador' com a nova média
         jogador.refresh_from_db()
-
         return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'valor': valor})
 
     jogador = Jogador.objects.get(pk=jogador_id)
     return render(request, "jogador/detailJogador.html", {"jogador": jogador })
 
+@login_required
 def addJogador(request):
     
     if request.method == 'POST':
@@ -83,6 +80,7 @@ def addJogador(request):
     form = JogadorForm()
     return render(request, "jogador/addJogador.html", {'form': form})
 
+@login_required
 def editJogador(request, jogador_id):
     
     jogador = get_object_or_404(Jogador, id=jogador_id)
@@ -100,6 +98,7 @@ def editJogador(request, jogador_id):
     
     return render(request, 'jogador/editJogador.html', {'form': form})
 
+@login_required
 def deleteJogador(request, jogador_id):
     if request.method == 'POST':
         try:

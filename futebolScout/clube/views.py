@@ -5,11 +5,15 @@ from .models import Clube
 from accounts.models import Pessoa
 from avaliacao.models import AvaliacaoClube
 from django.contrib.auth.decorators import login_required
+from accounts.views import isGestor
+
 
 # Create your views here.
+@login_required
 def list(request):
-    return render(request, 'clube/listClube.html', {'clubes': Clube.objects.all()})
+    return render(request, 'clube/listClube.html', {'clubes': Clube.objects.all(), 'isGestor': isGestor(request.user)})
 
+@login_required
 def add(request):
     if request.method == 'POST':
         form = ClubeCreaterForm(request.POST, request.FILES)
@@ -62,7 +66,8 @@ def detail(request, id):
         return render(request, 'clube/detailClube.html', {'clube': clube})
     else:
         return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
-        
+
+@login_required       
 def edit(request, id):
     clube = get_object_or_404(Clube, id=id)
     print(clube.fundacao)
@@ -76,9 +81,8 @@ def edit(request, id):
         form = ClubeCreaterForm(instance=clube)
         
     return render(request, 'clube/editClube.html', {'form': form})
-    
 
-        
+@login_required   
 def delete(request, id):
     if request.method == 'POST':
         try:

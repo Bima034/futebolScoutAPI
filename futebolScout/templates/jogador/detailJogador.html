@@ -7,9 +7,9 @@
     <div class="row justify-content-center ">
         <div class="col-md-12 position-relative">
           {% if jogador.fotoCapa_path %}
-              <img class="mb-3 card-img border border-success border-5" src="{{ jogador.fotoCapa_path.url }}" alt="Card image cap" style="max-height: 500px;"/>
+              <img class="mb-3 card-img border border-success border-5" src="{{ jogador.fotoCapa_path.url }}" alt="Card image cap" style="max-height: 700px;"/>
           {% else %}
-              <img class="mb-3 card-img border border-success border-5" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap"/>
+                <img class="mb-3 card-img border border-success border-5" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap" style="max-height: 700px;">
           {% endif %}
         </div>
       </div>
@@ -28,6 +28,7 @@
       <li class="list-group-item bg-dark text-white">Altura: {{jogador.altura}}</li>
       <li class="list-group-item bg-dark text-white mb-4">Pé: {{jogador.melhor_pe}}</li>  
     </ul>
+    <!--
     <div class="card-footer d-flex align-items-center justify-content-between">
       <div class="form-group w-100">
         <label for="exampleFormControlTextarea1">Adicionar Comentario</label>
@@ -35,6 +36,7 @@
         <a href="#" class="btn btn-success mt-1">Comentar</a>
       </div>
     </div>
+    -->
   </div>
 </div>
 
@@ -49,10 +51,10 @@
       </div>
       <div class="modal-body">
         <!-- Conteúdo do modal -->
-        <form method="POST" action="./">
+        <form method="POST">
           {% csrf_token %}
           <div class="mb-3">
-            <label for="customRange2" class="form-label fs-5">Avaliar: <span id="rangeValue">4</span> <i class="fas fa-star"></i></label>
+            <label for="customRange2" class="form-label fs-5">Avaliar: <span id="rangeValue"></span> <i class="fas fa-star"></i></label>
             <input name="nota" type="range" class="form-range text-success" min="1" max="10" step="1" id="customRange2" value="5">
           </div>
           <button type="submit" class="btn btn-success ">Avaliar</button>
