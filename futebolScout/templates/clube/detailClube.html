@@ -8,6 +8,8 @@
         <div class="col-md-12 position-relative">
           {% if clube.logo_path %}
               <img class="mb-3 card-img border border-success border-5" src="{{ clube.logo_path.url }}" alt="Card image cap" style="max-height: 700px;"/>
+          {% else %}
+                <img class="mb-3 card-img border border-success border-5" src="{% static 'imgs/IMAGE_NONE.jpg' %}" alt="Card image cap" style="max-height: 700px;">
           {% endif %}
         </div>
       </div>
