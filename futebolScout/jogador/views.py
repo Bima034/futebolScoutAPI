@@ -10,7 +10,6 @@ from avaliacao.models import AvaliacaoJogador
 from accounts.models import Pessoa
 from accounts.views import isGestor
 
-@login_required
 def dashboard(request):
     top_jogadores = Jogador.objects.order_by('-nota_media')[:3]
     top_clubes = Clube.objects.order_by('-nota_media')[:3]
@@ -27,39 +26,39 @@ def dashboard(request):
 
     return render(request, "dashboard.html", contexto)
 
-@login_required
 def listJogador(request):
     jogadores = Jogador.objects.all()
     return render(request, "jogador/listJogador.html", {"jogadores": jogadores, 'isGestor': isGestor(request.user)})
 
-@login_required
 def detailJogador(request, jogador_id):
 
     #AVALIANDO JOGADOR
     if request.method == 'POST':
-        jogador = Jogador.objects.get(pk=jogador_id)
-        valor = float(request.POST.get('nota', 0))
+        if request.user.is_authenticated:
+            jogador = Jogador.objects.get(pk=jogador_id)
+            valor = float(request.POST.get('nota', 0))
 
-        try:
-            pessoa = Pessoa.objects.get(pk=request.user.id)  
-        except Pessoa.DoesNotExist:
-            return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'error': 'Perfil de Pessoa não encontrado.'})
+            try:
+                pessoa = Pessoa.objects.get(pk=request.user.id)  
+            except Pessoa.DoesNotExist:
+                return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'error': 'Perfil de Pessoa não encontrado.'})
 
-        avaliacao_existente = AvaliacaoJogador.objects.filter(pessoa=pessoa, jogador=jogador).first()
+            avaliacao_existente = AvaliacaoJogador.objects.filter(pessoa=pessoa, jogador=jogador).first()
 
-        if avaliacao_existente:
-            avaliacao_existente.nota = valor
-            avaliacao_existente.save()
+            if avaliacao_existente:
+                avaliacao_existente.nota = valor
+                avaliacao_existente.save()
+            else:
+                AvaliacaoJogador.objects.create(
+                    pessoa=pessoa,
+                    jogador=jogador,
+                    nota=valor
+                )
+            jogador.refresh_from_db()
+            return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'valor': valor})
         else:
-            AvaliacaoJogador.objects.create(
-                pessoa=pessoa,
-                jogador=jogador,
-                nota=valor
-            )
-
-        jogador.refresh_from_db()
-        return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'valor': valor})
-
+            return HttpResponseRedirect(f'/accounts/login/')
+        
     jogador = Jogador.objects.get(pk=jogador_id)
     return render(request, "jogador/detailJogador.html", {"jogador": jogador })
 
@@ -108,3 +107,4 @@ def deleteJogador(request, jogador_id):
             return HttpResponseRedirect('/jogador/', {'error': 'Jogador não encontrado'})
 
     return HttpResponseRedirect(f'/jogador/detail/{jogador_id}')
+

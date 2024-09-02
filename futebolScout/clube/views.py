@@ -9,12 +9,11 @@ from accounts.views import isGestor
 
 
 # Create your views here.
-@login_required
-def list(request):
+def listClube(request):
     return render(request, 'clube/listClube.html', {'clubes': Clube.objects.all(), 'isGestor': isGestor(request.user)})
 
 @login_required
-def add(request):
+def addClube(request):
     if request.method == 'POST':
         form = ClubeCreaterForm(request.POST, request.FILES)
         if form.is_valid():
@@ -30,8 +29,7 @@ def add(request):
     form = ClubeCreaterForm()
     return render(request, 'clube/addClube.html', {'form': form})
 
-@login_required
-def detail(request, id):
+def detailClube(request, id):
 
     #AVALIANDO CLUBE
     if request.method == 'POST':
@@ -68,7 +66,7 @@ def detail(request, id):
         return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
 
 @login_required       
-def edit(request, id):
+def editClube(request, id):
     clube = get_object_or_404(Clube, id=id)
     print(clube.fundacao)
     
@@ -83,7 +81,7 @@ def edit(request, id):
     return render(request, 'clube/editClube.html', {'form': form})
 
 @login_required   
-def delete(request, id):
+def deleteClube(request, id):
     if request.method == 'POST':
         try:
             clube = Clube.objects.get(id=id)
