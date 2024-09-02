@@ -5,7 +5,7 @@ from .models import Clube
 from accounts.models import Pessoa
 from avaliacao.models import AvaliacaoClube
 from django.contrib.auth.decorators import login_required
-from accounts.views import isGestor
+from accounts.views import isGestor, isTorcedor
 
 
 # Create your views here.
@@ -39,7 +39,7 @@ def detailClube(request, id):
         try:
             pessoa = Pessoa.objects.get(pk=request.user.id)  
         except Pessoa.DoesNotExist:
-            return render(request, 'clube/detailClube.html', {'clube': clube, 'error': 'Perfil de Pessoa não encontrado.'})
+            return render(request, 'clube/detailClube.html', {'clube': clube, 'error': 'Perfil de Pessoa não encontrado.', 'isTorcedor': isTorcedor(request.user)})
 
         avaliacao_existente = AvaliacaoClube.objects.filter(pessoa=pessoa, clube=clube).first()
 
@@ -54,16 +54,16 @@ def detailClube(request, id):
             )
 
         clube.refresh_from_db()
-        return render(request, 'clube/detailClube.html', {'clube': clube, 'valor': valor})
+        return render(request, 'clube/detailClube.html', {'clube': clube, 'valor': valor, 'isTorcedor': isTorcedor(request.user)})
 
     if id:
         try:
             clube = Clube.objects.get(id=id)
         except Clube.DoesNotExist as error:
-            return render(request, 'clube/detailClube.html', {'error': error})
-        return render(request, 'clube/detailClube.html', {'clube': clube})
+            return render(request, 'clube/detailClube.html', {'error': error, 'isTorcedor': isTorcedor(request.user)})
+        return render(request, 'clube/detailClube.html', {'clube': clube, 'isTorcedor': isTorcedor(request.user)})
     else:
-        return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado'})
+        return HttpResponseRedirect('/clube/', {'error': 'Clube não encontrado', 'isTorcedor': isTorcedor(request.user)})
 
 @login_required       
 def editClube(request, id):

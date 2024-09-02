@@ -8,7 +8,7 @@ from federacao.models import Federacao
 from campeonato.models import Campeonato
 from avaliacao.models import AvaliacaoJogador
 from accounts.models import Pessoa
-from accounts.views import isGestor
+from accounts.views import isGestor, isTorcedor
 
 def dashboard(request):
     top_jogadores = Jogador.objects.order_by('-nota_media')[:3]
@@ -22,6 +22,7 @@ def dashboard(request):
         'top_federacoes': top_federacoes,
         'top_campeonatos': top_campeonatos,
         'isGestor': isGestor(request.user)
+        
     }
 
     return render(request, "dashboard.html", contexto)
@@ -41,7 +42,7 @@ def detailJogador(request, jogador_id):
             try:
                 pessoa = Pessoa.objects.get(pk=request.user.id)  
             except Pessoa.DoesNotExist:
-                return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'error': 'Perfil de Pessoa não encontrado.'})
+                return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'error': 'Perfil de Pessoa não encontrado.', 'isTorcedor': isTorcedor(request.user)})
 
             avaliacao_existente = AvaliacaoJogador.objects.filter(pessoa=pessoa, jogador=jogador).first()
 
@@ -55,12 +56,12 @@ def detailJogador(request, jogador_id):
                     nota=valor
                 )
             jogador.refresh_from_db()
-            return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'valor': valor})
+            return render(request, 'jogador/detailJogador.html', {'jogador': jogador, 'valor': valor, 'isTorcedor': isTorcedor(request.user)})
         else:
             return HttpResponseRedirect(f'/accounts/login/')
         
     jogador = Jogador.objects.get(pk=jogador_id)
-    return render(request, "jogador/detailJogador.html", {"jogador": jogador })
+    return render(request, "jogador/detailJogador.html", {"jogador": jogador, 'isTorcedor': isTorcedor(request.user)})
 
 @login_required
 def addJogador(request):

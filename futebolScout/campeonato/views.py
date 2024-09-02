@@ -4,7 +4,7 @@ from .models import Campeonato
 from accounts.models import Pessoa
 from avaliacao.models import AvaliacaoCampeonato
 from django.contrib.auth.decorators import login_required
-from accounts.views import isGestor
+from accounts.views import isGestor, isTorcedor
 
 
 # Create your views here.
@@ -38,7 +38,7 @@ def detailCampeonato(request, id):
             try:
                 pessoa = Pessoa.objects.get(pk=request.user.id)  
             except Pessoa.DoesNotExist:
-                return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'error': 'Perfil de Pessoa não encontrado.'})
+                return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'error': 'Perfil de Pessoa não encontrado.', 'isTorcedor': isTorcedor(request.user)})
 
             avaliacao_existente = AvaliacaoCampeonato.objects.filter(pessoa=pessoa, campeonato=campeonato).first()
             print(avaliacao_existente)
@@ -54,14 +54,14 @@ def detailCampeonato(request, id):
                 )
 
             campeonato.refresh_from_db()
-            return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'valor': valor})
+            return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'valor': valor, 'isTorcedor': isTorcedor(request.user)})
         else:
             return HttpResponseRedirect(f'/accounts/login/')
     try:
         campeonato = Campeonato.objects.get(id=id)
     except Campeonato.DoesNotExist as error:
-        return render(request, 'campeonato/detailCampeonato.html', {'error': error})
-    return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato})
+        return render(request, 'campeonato/detailCampeonato.html', {'error': error, 'isTorcedor': isTorcedor(request.user)})
+    return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'isTorcedor': isTorcedor(request.user)})
 
     
 @login_required
