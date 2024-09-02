@@ -11247,16 +11247,16 @@ body {
 }
 /* Se quiser deixar a barra de rolagem padrão é só comentar esses três -webkit-scroolbar*/
 ::-webkit-scrollbar {
-    width: 15px;
-    height: 15px; 
+    width: 10px;
+    height: 10px; 
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--bs-green); 
+    background-color: var(--bs-success); 
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: var(--bs-black); 
+    background-color: var(--bs-dark); 
 }
 /*---------------------------------------------------------------------------------------*/
