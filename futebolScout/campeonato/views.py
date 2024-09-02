@@ -8,12 +8,11 @@ from accounts.views import isGestor
 
 
 # Create your views here.
-@login_required
-def list(request):
+def listCampeonato(request):
     return render(request, 'campeonato/listCampeonato.html', {'campeonatos': Campeonato.objects.all(), 'isGestor': isGestor(request.user)})
 
 @login_required
-def add(request):
+def addCampeonato(request):
     if request.method == 'POST':
         form = CampeonatoForm(request.POST, request.FILES)
         if form.is_valid():
@@ -28,46 +27,45 @@ def add(request):
     form = CampeonatoForm()
     return render(request, 'campeonato/addCampeonato.html', {'form': form})
 
-@login_required
-def detail(request, id):
+def detailCampeonato(request, id):
 
     #AVALIANDO CAMPEONATO
     if request.method == 'POST':
-        campeonato = Campeonato.objects.get(pk=id)
-        valor = float(request.POST.get('nota', 0))
+        if request.user.is_authenticated:
+            campeonato = Campeonato.objects.get(pk=id)
+            valor = float(request.POST.get('nota', 0))
 
-        try:
-            pessoa = Pessoa.objects.get(pk=request.user.id)  
-        except Pessoa.DoesNotExist:
-            return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'error': 'Perfil de Pessoa não encontrado.'})
+            try:
+                pessoa = Pessoa.objects.get(pk=request.user.id)  
+            except Pessoa.DoesNotExist:
+                return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'error': 'Perfil de Pessoa não encontrado.'})
 
-        avaliacao_existente = AvaliacaoCampeonato.objects.filter(pessoa=pessoa, campeonato=campeonato).first()
-        print(avaliacao_existente)
+            avaliacao_existente = AvaliacaoCampeonato.objects.filter(pessoa=pessoa, campeonato=campeonato).first()
+            print(avaliacao_existente)
 
-        if avaliacao_existente:
-            avaliacao_existente.nota = valor
-            avaliacao_existente.save()
+            if avaliacao_existente:
+                avaliacao_existente.nota = valor
+                avaliacao_existente.save()
+            else:
+                AvaliacaoCampeonato.objects.create(
+                    pessoa=pessoa,
+                    campeonato=campeonato,
+                    nota=valor
+                )
+
+            campeonato.refresh_from_db()
+            return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'valor': valor})
         else:
-            AvaliacaoCampeonato.objects.create(
-                pessoa=pessoa,
-                campeonato=campeonato,
-                nota=valor
-            )
+            return HttpResponseRedirect(f'/accounts/login/')
+    try:
+        campeonato = Campeonato.objects.get(id=id)
+    except Campeonato.DoesNotExist as error:
+        return render(request, 'campeonato/detailCampeonato.html', {'error': error})
+    return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato})
 
-        campeonato.refresh_from_db()
-        return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato, 'valor': valor})
-
-    if id:
-        try:
-            campeonato = Campeonato.objects.get(id=id)
-        except Campeonato.DoesNotExist as error:
-            return render(request, 'campeonato/detailCampeonato.html', {'error': error})
-        return render(request, 'campeonato/detailCampeonato.html', {'campeonato': campeonato})
-    else:
-        return HttpResponseRedirect('/campeonato/', {'error': 'Campeonato não encontrado'})
     
 @login_required
-def edit(request, id):
+def editCampeonato(request, id):
     campeonato = get_object_or_404(Campeonato, id=id)
 
     if request.method == 'POST':
@@ -81,7 +79,7 @@ def edit(request, id):
     return render(request, 'campeonato/editCampeonato.html', {'form': form})
 
 @login_required
-def delete(request, id):
+def deleteCampeonato(request, id):
     if request.method == 'POST':
         try:
             Campeonato.objects.get(id=id).delete()

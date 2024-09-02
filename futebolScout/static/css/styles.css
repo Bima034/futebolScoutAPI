@@ -11245,3 +11245,18 @@ body {
 .btns {
   padding: 2rem;
 }
+/* Se quiser deixar a barra de rolagem padrão é só comentar esses três -webkit-scroolbar*/
+::-webkit-scrollbar {
+    width: 15px;
+    height: 15px; 
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--bs-green); 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--bs-black); 
+}
+/*---------------------------------------------------------------------------------------*/
