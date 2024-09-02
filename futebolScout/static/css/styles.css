@@ -11247,7 +11247,7 @@ body {
 }
 /* Se quiser deixar a barra de rolagem padrão é só comentar esses três -webkit-scroolbar*/
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
     height: 10px; 
 }
 
