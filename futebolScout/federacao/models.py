@@ -13,14 +13,7 @@ class Federacao(models.Model):
     afiliada = models.ManyToManyField('self', symmetrical=False, blank=True, through='Afiliacoes', related_name='afiliacoes')
     descricao = models.TextField()
     nota_media = models.FloatField(default=0.0, editable=False)
-    comentarios = models.ManyToManyField(
-        Pessoa, 
-        blank=True, 
-        through='ComentariosFederacao', 
-        related_name='federacao_comentarios'
-    )
-    
-    
+
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_atualizacao = models.DateTimeField(auto_now=True)
     
@@ -37,18 +30,3 @@ class Afiliacoes(models.Model):
     def __str__(self):
         return f'{self.federacao.nome} - {self.federacao_afiliada.nome}'
     
-class ComentariosFederacao(models.Model):
-    federacao = models.ForeignKey(
-        Federacao, 
-        on_delete=models.CASCADE, 
-        related_name='comentarios_federacao'
-    )
-    pessoa = models.ForeignKey(
-        Pessoa, 
-        on_delete=models.CASCADE, 
-        related_name='comentarios_pessoa_federacao'
-    )
-    comentario = models.TextField()
-
-    data_criacao = models.DateTimeField(auto_now_add=True)
-    data_atualizacao = models.DateTimeField(auto_now=True)
