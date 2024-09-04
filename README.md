@@ -3,7 +3,7 @@
 Este documento guiará você na instalação e configuração do FutebolScout.
 
 ## Pré-requisitos
-- **Python 3.10**: A aplicação requer a instalação do Python.
+- **Python**: A aplicação requer a instalação do Python.
 - **Git**: Para clonar o repositório da aplicação.
 - **pip**: O gerenciador de pacotes para Python.
 
