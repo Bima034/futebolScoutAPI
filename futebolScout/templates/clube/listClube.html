@@ -31,7 +31,12 @@
             <div class="card-body">
                 <h5 class="card-title">{{clube.nome}}</h5>
                 <h6 class="card-subtitle mb-2 text-success">{{clube.nota_media}}/10<i class="fas fa-star"></i></h6>
-                <p class="card-text">{{ clube.descricao|slice:":180" }}{% if clube.descricao|length > 180 %}...{% endif %}</p>
+                <p class="card-text">
+                    {% if clube.descricao|length == 0 %}
+                    Sem descrição
+                    {% else %}
+                        {{ clube.descricao|slice:":180" }}{% if clube.descricao|length > 180 %}...{% endif %}</p>
+                    {% endif %}
                 <div class="d-flex justify-content-between">
                     <a href="/clube/detail/{{ clube.id }}" class="btn btn-success">Detalhar</a>
                     {% if isGestor %}
