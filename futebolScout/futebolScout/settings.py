@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     #outrosApps
     'crispy_forms',
     'crispy_bootstrap5',
+    'django_extensions',
 ]
 
 
@@ -146,3 +147,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL='/'
 LOGOUT_REDIRECT_URL='/accounts/login/'
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

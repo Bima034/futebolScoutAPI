@@ -33,28 +33,6 @@ class Jogador(models.Model):
     clube = models.ForeignKey('clube.Clube', on_delete=models.SET_NULL, default=None, null=True, blank=True)
     posicao = models.CharField(choices=POSICAO_CHOICES, max_length=100)
     
-    comentarios = models.ManyToManyField(
-        Pessoa, 
-        blank=True, 
-        through='ComentariosJogador', 
-        related_name='jogador_comentarios'
-    )
         
-    data_criacao = models.DateTimeField(auto_now_add=True)
-    data_atualizacao = models.DateTimeField(auto_now=True)
-    
-class ComentariosJogador(models.Model):
-    jogador = models.ForeignKey(
-        Jogador, 
-        on_delete=models.CASCADE, 
-        related_name='comentarios_jogador'
-    )
-    pessoa = models.ForeignKey(
-        Pessoa, 
-        on_delete=models.CASCADE, 
-        related_name='comentarios_pessoa_jogador'
-    )
-    comentario = models.TextField()
-
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_atualizacao = models.DateTimeField(auto_now=True)

@@ -18,27 +18,6 @@ class Clube(models.Model):
     data_atualizacao = models.DateTimeField(auto_now=True)    
     descricao = models.TextField(null=True, blank=True)
     nota_media = models.FloatField(default=0.0, editable=False)
-    comentarios = models.ManyToManyField(
-        Pessoa, 
-        blank=True, 
-        through='ComentariosClube', 
-        related_name='clube_comentarios')
     
     def __str__(self):
         return self.nome
-
-class ComentariosClube(models.Model):
-    clube = models.ForeignKey(
-        Clube, 
-        on_delete=models.CASCADE, 
-        related_name='comentarios_clube'
-    )
-    pessoa = models.ForeignKey(
-        Pessoa, 
-        on_delete=models.CASCADE, 
-        related_name='comentarios_pessoa_clube'
-    )
-    comentario = models.TextField()
-
-    data_criacao = models.DateTimeField(auto_now_add=True)
-    data_atualizacao = models.DateTimeField(auto_now=True)
