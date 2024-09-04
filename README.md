@@ -12,7 +12,7 @@ Este documento guiará você na instalação e configuração do FutebolScout.
 Primeiramente, clone o repositório da aplicação para o seu ambiente local:
 
 ```
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/anthoniusdev/futebolScout.git
 cd seu-repositorio
 ```
 
