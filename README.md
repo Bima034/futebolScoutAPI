@@ -13,7 +13,7 @@ Primeiramente, clone o repositório da aplicação para o seu ambiente local:
 
 ```
 git clone https://github.com/anthoniusdev/futebolScout.git
-cd seu-repositorio
+cd futebolScout
 ```
 
 ## Passo 2: Criando e Ativando o Ambiente Virtual
