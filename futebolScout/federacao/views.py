@@ -5,7 +5,7 @@ from .models import Federacao
 from accounts.models import Pessoa
 from avaliacao.models import AvaliacaoFederacao
 from django.contrib.auth.decorators import login_required
-from accounts.views import isGestor
+from accounts.views import isGestor, isTorcedor
 
 def listFederacao(request):
     return render(request, "federacao/listFederacao.html", {'federacoes': Federacao.objects.all(), 'isGestor': isGestor(request.user)})
@@ -21,7 +21,7 @@ def detailFederacao(request, id_federacao):
             try:
                 pessoa = Pessoa.objects.get(pk=request.user.id)  
             except Pessoa.DoesNotExist:
-                return render(request, 'federacao/detailFederacao.html', {'federacao': federacao, 'error': 'Perfil de Pessoa não encontrado.'})
+                return render(request, 'federacao/detailFederacao.html', {'federacao': federacao, 'error': 'Perfil de Pessoa não encontrado.', 'isTorcedor': isTorcedor(request.user)})
 
             avaliacao_existente = AvaliacaoFederacao.objects.filter(pessoa=pessoa, federacao=federacao).first()
 
@@ -36,14 +36,14 @@ def detailFederacao(request, id_federacao):
                 )
 
             federacao.refresh_from_db()
-            return render(request, 'federacao/detailFederacao.html', {'federacao': federacao, 'valor': valor})
+            return render(request, 'federacao/detailFederacao.html', {'federacao': federacao, 'valor': valor, 'isTorcedor': isTorcedor(request.user)})
         else:
-            return HttpResponseRedirect(f'/accounts/login/')
+            return HttpResponseRedirect(f'/accounts/login/', {'isTorcedor': isTorcedor(request.user)})
 
     if request.method == 'GET':
         federacao = Federacao.objects.get(id=id_federacao)
         print(federacao.afiliada.all())
-        return render(request, "federacao/detailFederacao.html", {'federacao': federacao})
+        return render(request, "federacao/detailFederacao.html", {'federacao': federacao, 'isTorcedor': isTorcedor(request.user)})
     return HttpResponse('Método não permitido', status=405)
 
 @login_required

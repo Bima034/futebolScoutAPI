@@ -16,7 +16,9 @@
       
     <div class="d-flex justify-content-between align-items-center">
       <h5 class="card-title text-success"> Nota: {{jogador.nota_media}}/10 <i class="fas fa-star"></i></h5>
+        {% if request.user.is_authenticated and isTorcedor %}
         <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#avaliacaoModal">Avaliar</a>
+        {% endif %}
     </div>
     <h5 class="card-title ">{{jogador.nome_jogador}}</h5>
     <p class="card-text">{{jogador.descricao}}</p>

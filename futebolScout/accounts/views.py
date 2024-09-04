@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 def isGestor(user):
     return user.groups.filter(name='Gestores').exists()
 
+def isTorcedor(user):
+    return user.groups.filter(name='Torcedores').exists()
+
 def createUser(request):
     
     if request.method == 'POST':
@@ -14,6 +17,7 @@ def createUser(request):
         if form.is_valid():
             user = form.save()
 
+            gestores_group, created = Group.objects.get_or_create(name='Gestores')
             alunos_group, created = Group.objects.get_or_create(name='Torcedores')
             user.groups.add(alunos_group)
             
