@@ -30,6 +30,7 @@ urlpatterns = [
     path('federacao/', include('federacao.urls')),
     path('campeonato/', include('campeonato.urls')),
     path('pesquisa/', include('pesquisa.urls')),
+    path('api-auth/', include('rest_framework.urls')),  # para login no navegador do DRF
     #path('avaliacao/', include('avaliacao.urls')),
 ]
 
