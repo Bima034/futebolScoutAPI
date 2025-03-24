@@ -1,12 +1,6 @@
 from rest_framework import viewsets
 from .models import Jogador
 from .serializers import JogadorSerializer
-from django.shortcuts import render
-from accounts.views import isGestor
-from clube.models import Clube
-from federacao.models import Federacao
-from campeonato.models import Campeonato
-
 
 class JogadorViewSet(viewsets.ModelViewSet):
     queryset = Jogador.objects.all()
