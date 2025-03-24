@@ -1,3 +1,19 @@
+from rest_framework import viewsets
+from .models import Jogador
+from .serializers import JogadorSerializer
+from django.shortcuts import render
+from accounts.views import isGestor
+from clube.models import Clube
+from federacao.models import Federacao
+from campeonato.models import Campeonato
+
+
+class JogadorViewSet(viewsets.ModelViewSet):
+    queryset = Jogador.objects.all()
+    serializer_class = JogadorSerializer
+
+
+'''
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import JogadorForm
@@ -108,4 +124,4 @@ def deleteJogador(request, jogador_id):
             return HttpResponseRedirect('/jogador/', {'error': 'Jogador não encontrado'})
 
     return HttpResponseRedirect(f'/jogador/detail/{jogador_id}')
-
+'''
