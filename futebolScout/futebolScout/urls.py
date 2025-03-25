@@ -46,9 +46,11 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     #path('jogador/', include('jogador.urls')),
     path('api/', include('jogador.urls')),
+    path('api/', include('federacao.urls')),
     #path('clube/', include('clube.urls')),
     path('api/', include('clube.urls')),
-    path('federacao/', include('federacao.urls')),
+    #path('campeonato/', include('campeonato.urls')),
+    #path('federacao/', include('federacao.urls')),
     path('api/', include('campeonato.urls')),
     path('pesquisa/', include('pesquisa.urls')),
     path('api-auth/', include('rest_framework.urls')),  # para login no navegador do DRF

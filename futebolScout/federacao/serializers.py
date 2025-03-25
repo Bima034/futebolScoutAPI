@@ -4,4 +4,4 @@ from rest_framework import serializers
 class FederacaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Federacao
-        fields = ['nome', 'id']
+        fields = '__all__'
