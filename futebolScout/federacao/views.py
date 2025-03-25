@@ -1,3 +1,16 @@
+from rest_framework import viewsets
+from .models import Federacao
+from .serializers import FederacaoSerializer
+from .permissions import IsAuthenticatedWithJWT
+class FederacaoViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = [IsAuthenticatedWithJWT]
+    
+    queryset = Federacao.objects.all()
+    serializer_class = FederacaoSerializer
+    
+    
+'''
 from django.shortcuts import render, get_object_or_404
 from .forms import FederacaoCreaterForm
 from django.http import HttpResponseRedirect, HttpResponse
@@ -92,3 +105,4 @@ def editJogador(request, id_federacao):
             return render(request, "federacao/editFederacao.html", {'form': form})
     return HttpResponse('Método não permitido', status=405)
 
+'''
