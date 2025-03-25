@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from .models import Federacao
 from .serializers import FederacaoSerializer
-from .permissions import IsAuthenticatedWithJWT 
+from .permissions import IsAuthenticatedWithJWT
 class FederacaoViewSet(viewsets.ModelViewSet):
     
     permission_classes = [IsAuthenticatedWithJWT]
