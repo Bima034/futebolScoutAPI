@@ -1,4 +1,6 @@
-from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework.permissions import BasePermission
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.exceptions import AuthenticationFailed
 
 class IsAuthenticatedOrCreateOnly(BasePermission):
     """
