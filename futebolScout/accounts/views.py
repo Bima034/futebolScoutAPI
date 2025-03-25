@@ -36,8 +36,7 @@ class LoginView(TokenObtainPairView):
 
         return Response({
             'token': access_token,  # só retorna o access
-            'user_id': request.user.id,
-            'username': request.user.username,
+
         })
 
     
