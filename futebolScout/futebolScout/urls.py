@@ -30,6 +30,7 @@ urlpatterns = [
     path('api/', include('federacao.urls')),
     #path('clube/', include('clube.urls')),
     path('api/', include('clube.urls')),
+    path('api/', include('avaliacao.urls')),
     #path('campeonato/', include('campeonato.urls')),
     #path('federacao/', include('federacao.urls')),
     path('api/', include('campeonato.urls')),
