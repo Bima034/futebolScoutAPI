@@ -1,8 +1,11 @@
 from rest_framework import viewsets
 from .models import Clube
 from .serializers import ClubeSerializer
-
+from .permissions import IsAuthenticatedWithJWT
 class ClubeViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = [IsAuthenticatedWithJWT]
+    
     queryset = Clube.objects.all()
     serializer_class = ClubeSerializer
 

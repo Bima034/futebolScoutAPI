@@ -1,10 +1,10 @@
 from rest_framework import viewsets
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from .models import Pessoa
 from .serializers import PessoaSerializer
-from .permissions import IsAuthenticatedOrCreateOnly  # importa a permissão
+from .permissions import IsAuthenticatedOrCreateOnly
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 class PessoaViewSet(viewsets.ModelViewSet):
     queryset = Pessoa.objects.all()
@@ -26,15 +26,20 @@ class PessoaViewSet(viewsets.ModelViewSet):
                 return Pessoa.objects.filter(id=user.id)
         return Pessoa.objects.none()
 
-class LoginView(ObtainAuthToken):
+
+class LoginView(TokenObtainPairView):
+    permission_classes = [AllowAny]  # Permite o acesso sem autenticação
+
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
-        token = Token.objects.get(key=response.data['token'])
+        access_token = response.data.get('access')
+
         return Response({
-            'token': token.key,
-            'user_id': token.user_id,
-            'username': token.user.username,
+            'token': access_token,  # só retorna o access
+            'user_id': request.user.id,
+            'username': request.user.username,
         })
+
     
 def isTorcedor(user):
     return user.groups.filter(name='torcedor').exists()
