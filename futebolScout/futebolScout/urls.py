@@ -41,21 +41,15 @@ urlpatterns = [
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),    path('admin/', admin.site.urls),
-    #path('', dashboard, name='dashboard'),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    #path('jogador/', include('jogador.urls')),
     path('jogador/', include('jogador.urls')),
     path('federacao/', include('federacao.urls')),
-    #path('clube/', include('clube.urls')),
     path('clube/', include('clube.urls')),
     path('avaliacao/', include('avaliacao.urls')),
-    #path('campeonato/', include('campeonato.urls')),
-    #path('federacao/', include('federacao.urls')),
     path('campeonato/', include('campeonato.urls')),
     path('pesquisa/', include('pesquisa.urls')),
-    path('api-auth/', include('rest_framework.urls')),  # para login no navegador do DRF
-    #path('avaliacao/', include('avaliacao.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
