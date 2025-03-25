@@ -49,6 +49,7 @@ urlpatterns = [
     path('federacao/', include('federacao.urls')),
     #path('clube/', include('clube.urls')),
     path('clube/', include('clube.urls')),
+    path('avaliacao/', include('avaliacao.urls')),
     #path('campeonato/', include('campeonato.urls')),
     #path('federacao/', include('federacao.urls')),
     path('campeonato/', include('campeonato.urls')),
